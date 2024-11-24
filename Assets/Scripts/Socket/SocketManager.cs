@@ -5,6 +5,7 @@ using System;
 using UnityEngine;
 using SocketIOClient.Newtonsoft.Json;
 using UnityEditor.PackageManager;
+using Constants;
 
 namespace Socket
 {
@@ -19,7 +20,7 @@ namespace Socket
 
         private async void Initialize()
         {
-            Uri uri = new("http://localhost:3000");
+            Uri uri = new(SocketConstants.SocketURI);
             socket = new SocketIOUnity(uri, new SocketIOOptions
             {
                 Query = new Dictionary<string, string>
