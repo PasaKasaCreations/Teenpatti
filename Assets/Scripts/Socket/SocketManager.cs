@@ -6,6 +6,7 @@ using UnityEngine;
 using SocketIOClient.Newtonsoft.Json;
 using UnityEditor.PackageManager;
 using Constants;
+using Newtonsoft.Json;
 
 namespace Socket
 {
@@ -38,7 +39,7 @@ namespace Socket
             socket.OnPing += OnPing;
             socket.OnReconnected += OnReconnected;
             socket.OnReconnectError += OnReconnectedError; ;
-            socket.OnReconnectFailed += OnReconnectFailed; 
+            socket.OnReconnectFailed += OnReconnectFailed;
 
             await socket.ConnectAsync();
         }
@@ -81,6 +82,48 @@ namespace Socket
         private void OnReconnectFailed(object sender, EventArgs e)
         {
             Debug.Log("Reconnect Failed!!!");
+        }
+
+        public T Listen<T>(string eventName, Action callback, bool runInUnityThread)
+        {
+            T value = default;
+
+            socket.On(eventName, (response) =>
+            {
+                value = response.GetValue<T>();
+
+                if (callback != null)
+                {
+                    if (runInUnityThread) UnityThread.executeInUpdate(callback);
+                    else callback.Invoke();
+                }
+            });
+
+            return value;
+        }
+
+        public void Emit(string eventName, Action callback)
+        {
+            socket.Emit(eventName);
+            callback?.Invoke();
+        }
+
+        public void Emit<T>(string eventName, T data, Action callback)
+        {
+            socket.Emit(eventName, data);
+            callback?.Invoke();
+        }
+
+        public async void EmitAsync(string eventName, Action callback)
+        {
+            await socket.EmitAsync(eventName);
+            callback?.Invoke();
+        }
+
+        public async void EmitAsync<T>(string eventName, T data, Action callback)
+        {
+            await socket.EmitAsync(eventName, data);
+            callback?.Invoke();
         }
 
         private async void OnDisable()

@@ -3,7 +3,7 @@ namespace Constants
 {
     public static class SocketConstants
     {
-        public const string SocketURI = "http://localhost:3000";
+        public const string SocketURI = "http://localhost:8080/";
     }
 
 }
