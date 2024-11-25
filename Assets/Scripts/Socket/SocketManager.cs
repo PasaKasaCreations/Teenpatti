@@ -12,7 +12,8 @@ namespace Socket
 {
     public class SocketManager : MonoBehaviour
     {
-        private SocketIOUnity socket;
+        [Header("Socket")]
+        private SocketIOUnity _socket;
 
         private void Start()
         {
@@ -22,7 +23,7 @@ namespace Socket
         private async void Initialize()
         {
             Uri uri = new(SocketConstants.SocketURI);
-            socket = new SocketIOUnity(uri, new SocketIOOptions
+            _socket = new SocketIOUnity(uri, new SocketIOOptions
             {
                 Query = new Dictionary<string, string>
                 {
@@ -31,17 +32,17 @@ namespace Socket
                 Transport = SocketIOClient.Transport.TransportProtocol.WebSocket,
             });
 
-            socket.JsonSerializer = new NewtonsoftJsonSerializer();
-            socket.OnConnected += OnConnected;
-            socket.OnDisconnected += OnDisconnected;
-            socket.OnError += OnError;
-            socket.OnReconnectAttempt += OnReconnectAttempt; ;
-            socket.OnPing += OnPing;
-            socket.OnReconnected += OnReconnected;
-            socket.OnReconnectError += OnReconnectedError; ;
-            socket.OnReconnectFailed += OnReconnectFailed;
+            _socket.JsonSerializer = new NewtonsoftJsonSerializer();
+            _socket.OnConnected += OnConnected;
+            _socket.OnDisconnected += OnDisconnected;
+            _socket.OnError += OnError;
+            _socket.OnReconnectAttempt += OnReconnectAttempt; ;
+            _socket.OnPing += OnPing;
+            _socket.OnReconnected += OnReconnected;
+            _socket.OnReconnectError += OnReconnectedError; ;
+            _socket.OnReconnectFailed += OnReconnectFailed;
 
-            await socket.ConnectAsync();
+            await _socket.ConnectAsync();
         }
 
         private void OnConnected(object sender, EventArgs e)
@@ -84,60 +85,56 @@ namespace Socket
             Debug.Log("Reconnect Failed!!!");
         }
 
-        public T Listen<T>(string eventName, Action callback, bool runInUnityThread)
+        public void Listen<T>(string eventName, Action<T> callback, bool runInUnityThread = false)
         {
-            T value = default;
-
-            socket.On(eventName, (response) =>
+            _socket.On(eventName, (response) =>
             {
-                value = response.GetValue<T>();
+                T value = response.GetValue<T>();
 
                 if (callback != null)
                 {
-                    if (runInUnityThread) UnityThread.executeInUpdate(callback);
-                    else callback.Invoke();
+                    if (runInUnityThread) UnityThread.executeInUpdate(() => callback.Invoke(value));
+                    else callback.Invoke(value);
                 }
             });
-
-            return value;
         }
 
         public void Emit(string eventName, Action callback)
         {
-            socket.Emit(eventName);
+            _socket.Emit(eventName);
             callback?.Invoke();
         }
 
         public void Emit<T>(string eventName, T data, Action callback)
         {
-            socket.Emit(eventName, data);
+            _socket.Emit(eventName, data);
             callback?.Invoke();
         }
 
         public async void EmitAsync(string eventName, Action callback)
         {
-            await socket.EmitAsync(eventName);
+            await _socket.EmitAsync(eventName);
             callback?.Invoke();
         }
 
         public async void EmitAsync<T>(string eventName, T data, Action callback)
         {
-            await socket.EmitAsync(eventName, data);
+            await _socket.EmitAsync(eventName, data);
             callback?.Invoke();
         }
 
         private async void OnDisable()
         {
-            socket.OnConnected -= OnConnected;
-            socket.OnDisconnected -= OnDisconnected;
-            socket.OnError -= OnError;
-            socket.OnReconnectAttempt -= OnReconnectAttempt; ;
-            socket.OnPing -= OnPing;
-            socket.OnReconnected -= OnReconnected;
-            socket.OnReconnectError -= OnReconnectedError; ;
-            socket.OnReconnectFailed -= OnReconnectFailed;
+            _socket.OnConnected -= OnConnected;
+            _socket.OnDisconnected -= OnDisconnected;
+            _socket.OnError -= OnError;
+            _socket.OnReconnectAttempt -= OnReconnectAttempt; ;
+            _socket.OnPing -= OnPing;
+            _socket.OnReconnected -= OnReconnected;
+            _socket.OnReconnectError -= OnReconnectedError; ;
+            _socket.OnReconnectFailed -= OnReconnectFailed;
 
-            await socket.DisconnectAsync();
+            await _socket.DisconnectAsync();
         }
     }
 }
