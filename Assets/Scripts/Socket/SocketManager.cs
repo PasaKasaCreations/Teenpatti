@@ -1,16 +1,14 @@
 using SocketIOClient;
 using System.Collections.Generic;
-using System.Net.Sockets;
 using System;
 using UnityEngine;
 using SocketIOClient.Newtonsoft.Json;
-using UnityEditor.PackageManager;
 using Constants;
-using Newtonsoft.Json;
+using Helpers;
 
 namespace Socket
 {
-    public class SocketManager : MonoBehaviour
+    public class SocketManager : Singleton<SocketManager>
     {
         [Header("Socket")]
         private SocketIOUnity _socket;
