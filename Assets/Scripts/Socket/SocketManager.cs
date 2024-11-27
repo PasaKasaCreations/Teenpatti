@@ -1,10 +1,12 @@
 using SocketIOClient;
-using System.Collections.Generic;
 using System;
 using UnityEngine;
 using SocketIOClient.Newtonsoft.Json;
 using Constants;
 using Helpers;
+using Teenpatti.Data;
+using ScriptableObjects.EventBus;
+
 
 namespace Socket
 {
@@ -12,6 +14,10 @@ namespace Socket
     {
         [Header("Socket")]
         private SocketIOUnity _socket;
+
+        [Header("Events")]
+        [SerializeField]
+        private VoidEventChannel SocketConnectedEvent;
 
         private void Start()
         {
@@ -21,14 +27,17 @@ namespace Socket
         private async void Initialize()
         {
             Uri uri = new(SocketConstants.SocketURI);
-            _socket = new SocketIOUnity(uri, new SocketIOOptions
+           
+            SocketIOOptions socketOptions = new SocketIOOptions
             {
-                Query = new Dictionary<string, string>
+                Path = "/socket.io",
+                Auth = new Auth()
                 {
-                    {"token", "UNITY" }
+                    token = SocketConstants.Token,
                 },
                 Transport = SocketIOClient.Transport.TransportProtocol.WebSocket,
-            });
+            };
+            _socket = new SocketIOUnity(uri, socketOptions);
 
             _socket.JsonSerializer = new NewtonsoftJsonSerializer();
             _socket.OnConnected += OnConnected;
@@ -45,6 +54,7 @@ namespace Socket
 
         private void OnConnected(object sender, EventArgs e)
         {
+            SocketConnectedEvent.Raise();
             Debug.Log("Socket Connected!!!");
         }
 
@@ -55,7 +65,7 @@ namespace Socket
 
         private void OnError(object sender, string e)
         {
-            Debug.Log("Socket Error!!!");
+            Debug.Log($"Socket Error!!! {e}");
         }
 
         private void OnPing(object sender, EventArgs e)
@@ -83,7 +93,7 @@ namespace Socket
             Debug.Log("Reconnect Failed!!!");
         }
 
-        public void Listen<T>(string eventName, Action<T> callback, bool runInUnityThread = false)
+        public void Listen<T>(string eventName, bool runInUnityThread = false, Action<T> callback = null)
         {
             _socket.On(eventName, (response) =>
             {
@@ -97,25 +107,25 @@ namespace Socket
             });
         }
 
-        public void Emit(string eventName, Action callback)
+        public void Emit(string eventName, Action callback = null)
         {
             _socket.Emit(eventName);
             callback?.Invoke();
         }
 
-        public void Emit<T>(string eventName, T data, Action callback)
+        public void Emit<T>(string eventName, T data, Action callback = null)
         {
             _socket.Emit(eventName, data);
             callback?.Invoke();
         }
 
-        public async void EmitAsync(string eventName, Action callback)
+        public async void EmitAsync(string eventName, Action callback = null)
         {
             await _socket.EmitAsync(eventName);
             callback?.Invoke();
         }
 
-        public async void EmitAsync<T>(string eventName, T data, Action callback)
+        public async void EmitAsync<T>(string eventName, T data, Action callback = null)
         {
             await _socket.EmitAsync(eventName, data);
             callback?.Invoke();
