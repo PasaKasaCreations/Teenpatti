@@ -336,6 +336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
   SocketConnectedEvent: {fileID: 11400000, guid: 41be878e0880ecd44b597c15f544675f, type: 2}
+  socketDebugger: {fileID: 11400000, guid: 71829cd286e8641408efb5a62da8de46, type: 2}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1027,6 +1028,7 @@ MonoBehaviour:
   SocketConnectedEvent: {fileID: 11400000, guid: 41be878e0880ecd44b597c15f544675f, type: 2}
   PlayerJoinedEvent: {fileID: 11400000, guid: 2e3583787677921408ec386c7f17037c, type: 2}
   players: []
+  roomDebugger: {fileID: 11400000, guid: f17e784a0eae6c142a6e50f25b5712e0, type: 2}
 --- !u!1 &1454876946
 GameObject:
   m_ObjectHideFlags: 0

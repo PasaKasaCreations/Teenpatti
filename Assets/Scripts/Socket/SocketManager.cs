@@ -6,6 +6,7 @@ using Constants;
 using Helpers;
 using Teenpatti.Data;
 using ScriptableObjects.EventBus;
+using ScriptableObjects.Logging;
 
 
 namespace Socket
@@ -18,6 +19,10 @@ namespace Socket
         [Header("Events")]
         [SerializeField]
         private VoidEventChannel SocketConnectedEvent;
+
+        [Header("Logger")]
+        [SerializeField]
+        private Debugger socketDebugger;
 
         private void Start()
         {
@@ -55,42 +60,42 @@ namespace Socket
         private void OnConnected(object sender, EventArgs e)
         {
             SocketConnectedEvent.Raise();
-            Debug.Log("Socket Connected!!!");
+            socketDebugger.Log("Socket Connected!!!");
         }
 
         private void OnDisconnected(object sender, string e)
         {
-            Debug.Log("Socket DisConnected!!!");
+            socketDebugger.Log("Socket DisConnected!!!");
         }
 
         private void OnError(object sender, string e)
         {
-            Debug.Log($"Socket Error!!! {e}");
+            socketDebugger.Log($"Socket Error!!! {e}");
         }
 
         private void OnPing(object sender, EventArgs e)
         {
-            Debug.Log("Pinging!!!");
+            socketDebugger.Log("Pinging!!!");
         }
 
         private void OnReconnectAttempt(object sender, int e)
         {
-            Debug.Log("Reconnect Attempt!!!");
+            socketDebugger.Log("Reconnect Attempt!!!");
         }
 
         private void OnReconnected(object sender, int e)
         {
-            Debug.Log("Reconnected!!!");
+            socketDebugger.Log("Reconnected!!!");
         }
 
         private void OnReconnectedError(object sender, Exception e)
         {
-            Debug.Log("Reconnect Error!!!");
+            socketDebugger.Log("Reconnect Error!!!");
         }
 
         private void OnReconnectFailed(object sender, EventArgs e)
         {
-            Debug.Log("Reconnect Failed!!!");
+            socketDebugger.Log("Reconnect Failed!!!");
         }
 
         public void Listen<T>(string eventName, bool runInUnityThread = false, Action<T> callback = null)

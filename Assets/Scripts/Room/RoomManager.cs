@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using ScriptableObjects.EventBus;
+using ScriptableObjects.Logging;
 using Socket;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,10 @@ namespace Teenpatti.RoomScripts
         [SerializeField]
         private List<Player> players = new();
 
+        [Header("Logger")]
+        [SerializeField]
+        private Debugger roomDebugger;
+
         private void OnEnable()
         {
             SocketConnectedEvent.Event += OnSocketConnected;
@@ -30,11 +35,11 @@ namespace Teenpatti.RoomScripts
         {
             SocketManager.Instance.Listen<Room>("gameroom:join-response", true, (room) =>
             {
-                Debug.Log(JsonConvert.SerializeObject(room));
+                roomDebugger.Log(JsonConvert.SerializeObject(room));
             });
             SocketManager.Instance.Listen<RoomData>("gameroom:update-response", true, (roomData) =>
             {
-                Debug.Log(JsonConvert.SerializeObject(roomData));
+                roomDebugger.Log(JsonConvert.SerializeObject(roomData));
                 foreach (Player roomPlayer in roomData.players)
                 {
                     Player existingPlayer = null;
@@ -62,7 +67,7 @@ namespace Teenpatti.RoomScripts
                 balance = 2000,
             }, () =>
             {
-                Debug.Log("Room Joined");
+                roomDebugger.Log("Room Joined");
             });
         }
 
