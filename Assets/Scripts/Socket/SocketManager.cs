@@ -7,6 +7,7 @@ using Helpers;
 using Teenpatti.Data;
 using ScriptableObjects.EventBus;
 using ScriptableObjects.Logging;
+using Newtonsoft.Json;
 
 
 namespace Socket
@@ -41,6 +42,8 @@ namespace Socket
                     token = SocketConstants.Token,
                 },
                 Transport = SocketIOClient.Transport.TransportProtocol.WebSocket,
+                ReconnectionAttempts = 10,
+                ReconnectionDelay = 2000,
             };
             _socket = new SocketIOUnity(uri, socketOptions);
 
@@ -61,6 +64,21 @@ namespace Socket
         {
             SocketConnectedEvent.Raise();
             socketDebugger.Log("Socket Connected!!!");
+
+            Listen<Error>(SocketEvents.Error, true, (error) =>
+            {
+                socketDebugger.Log($"Error: {error.message}");
+            });
+
+            Listen<Error>(SocketEvents.ConnectError, true, (error) =>
+            {
+                socketDebugger.Log($"Error: {error.message}");
+            });
+
+            Listen<Error>(SocketEvents.ConnectFailed, true, (error) =>
+            {
+                socketDebugger.Log($"Error: {error.message}");
+            });
         }
 
         private void OnDisconnected(object sender, string e)

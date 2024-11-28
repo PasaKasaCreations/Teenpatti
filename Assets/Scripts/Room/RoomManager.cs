@@ -1,3 +1,4 @@
+using Constants;
 using Newtonsoft.Json;
 using ScriptableObjects.EventBus;
 using ScriptableObjects.Logging;
@@ -33,11 +34,15 @@ namespace Teenpatti.RoomScripts
 
         private void OnSocketConnected()
         {
-            SocketManager.Instance.Listen<Room>("gameroom:join-response", true, (room) =>
+            SocketManager.Instance.Listen<Room>(SocketEvents.GameRoomJoinResponse, true, (room) =>
             {
                 roomDebugger.Log(JsonConvert.SerializeObject(room));
             });
-            SocketManager.Instance.Listen<RoomData>("gameroom:update-response", true, (roomData) =>
+            SocketManager.Instance.Listen<Room>(SocketEvents.GameRoomLeaveResponse, true, (room) =>
+            {
+                roomDebugger.Log(JsonConvert.SerializeObject(room));
+            });
+            SocketManager.Instance.Listen<RoomData>(SocketEvents.GameRoomUpdateResponse, true, (roomData) =>
             {
                 roomDebugger.Log(JsonConvert.SerializeObject(roomData));
                 foreach (Player roomPlayer in roomData.players)
@@ -54,34 +59,43 @@ namespace Teenpatti.RoomScripts
                     }
                 }
             });
+            SocketManager.Instance.Listen<Room>(SocketEvents.GameRoomClosedResponse, true, (room) =>
+            {
+                roomDebugger.Log(JsonConvert.SerializeObject(room));
+            });
         }
 
         [ContextMenu("Join Room")]
-        private void JoinRoom()
+        public void JoinRoom()
         {
-            SocketManager.Instance.Emit<PlayerData>("gameroom:join", new PlayerData()
+            SocketManager.Instance.Emit<Player>(SocketEvents.GameRoomJoin, new Player()
             {
-                id = 1,
+                id = "1",
                 name = "Shreedesh",
                 avatar = "https://via.placeholder.com/50",
                 balance = 2000,
             }, () =>
             {
-                roomDebugger.Log("Room Joined");
+                roomDebugger.Log("Joining Room...");
+            });
+        }
+
+        [ContextMenu("Leave Room")]
+        public void LeaveRoom()
+        {
+            SocketManager.Instance.Emit(SocketEvents.GameRoomLeave, new Player()
+            {
+                id = "1",
+            },
+            () =>
+            {
+                roomDebugger.Log("Leaving Room...");
             });
         }
 
         private void OnDisable()
         {
             SocketConnectedEvent.Event -= OnSocketConnected;
-        }
-
-        public class PlayerData
-        {
-            public int id;
-            public string name;
-            public string avatar;
-            public float balance;
         }
     }
 }
