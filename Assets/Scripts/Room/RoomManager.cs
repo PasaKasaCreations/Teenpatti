@@ -18,6 +18,8 @@ namespace Teenpatti.RoomScripts
         private VoidEventChannel SocketConnectedEvent;
         [SerializeField]
         private PlayerEventChannel PlayerJoinedEvent;
+        [SerializeField]
+        private RoomEventChannel RoomJoinedEvent;
 
         [Header("Room Data")]
         [SerializeField]
@@ -37,6 +39,7 @@ namespace Teenpatti.RoomScripts
             SocketManager.Instance.Listen<Room>(SocketEvents.GameRoomJoinResponse, true, (room) =>
             {
                 roomDebugger.Log(JsonConvert.SerializeObject(room));
+                RoomJoinedEvent.Raise(room);
             });
             SocketManager.Instance.Listen<Room>(SocketEvents.GameRoomLeaveResponse, true, (room) =>
             {
