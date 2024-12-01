@@ -1,4 +1,4 @@
-using Teenpatti.Enums;
+using Enums;
 using UnityEngine;
 
 namespace ScriptableObjects.Logging

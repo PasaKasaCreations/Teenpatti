@@ -1,5 +1,5 @@
 
-namespace Teenpatti.Enums
+namespace Enums
 {
     public enum LoggingType
     {
