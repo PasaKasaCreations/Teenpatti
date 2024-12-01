@@ -117,6 +117,7 @@ namespace API
             }
         }
 
+        #region Test All Requests
         [ContextMenu("Test Get")]
         private void TestGet()
         {
@@ -160,6 +161,7 @@ namespace API
             public string title;
             public float price;
         }
+        #endregion
     }
 }
 
