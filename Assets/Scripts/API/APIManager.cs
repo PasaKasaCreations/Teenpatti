@@ -12,6 +12,10 @@ namespace API
 {
     public class APIManager : Singleton<APIManager>
     {
+        [Header("Timeout")]
+        [SerializeField]
+        private int timeoutSeconds = 10;
+
         [Header("Logger")]
         [SerializeField]
         private Debugger apiLogger;
@@ -39,6 +43,7 @@ namespace API
         private IEnumerator GetRequest<R>(string uri, Action<R> callback, Action errorCallback = null)
         {
             using UnityWebRequest webRequest = UnityWebRequest.Get(uri);
+            webRequest.timeout = timeoutSeconds;
             yield return webRequest.SendWebRequest();
 
             switch (webRequest.result)
@@ -64,6 +69,7 @@ namespace API
         {
             string jsonData = JsonConvert.SerializeObject(data);
             using UnityWebRequest webRequest = UnityWebRequest.Post(uri, jsonData, "application/json");
+            webRequest.timeout = timeoutSeconds;
             yield return webRequest.SendWebRequest();
 
             if (webRequest.result != UnityWebRequest.Result.Success)
@@ -85,7 +91,8 @@ namespace API
             byte[] bodyData = Encoding.UTF8.GetBytes(jsonData);
 
             using UnityWebRequest webRequest = UnityWebRequest.Put(uri, bodyData);
-            if(putType == PutType.Patch)
+            webRequest.timeout = timeoutSeconds;
+            if (putType == PutType.Patch)
             {
                 webRequest.method = "PATCH";
             }
@@ -107,6 +114,7 @@ namespace API
         private IEnumerator DeleteRequest(string uri, Action callback, Action errorCallback = null)
         {
             using UnityWebRequest webRequest = UnityWebRequest.Delete(uri);
+            webRequest.timeout = timeoutSeconds;
             yield return webRequest.SendWebRequest();
 
             if (webRequest.result != UnityWebRequest.Result.Success)
@@ -119,6 +127,11 @@ namespace API
                 apiLogger.Log("Deleted");
                 callback?.Invoke();
             }
+        }
+
+        private void OnDisable()
+        {
+            StopAllCoroutines();
         }
     }
 }
