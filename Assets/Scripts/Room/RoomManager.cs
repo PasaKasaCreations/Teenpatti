@@ -5,7 +5,7 @@ using ScriptableObjects.Logging;
 using Socket;
 using System.Collections.Generic;
 using System.Linq;
-using Teenpatti.Data;
+using Teenpatti.Data.Socket;
 using UnityEngine;
 
 

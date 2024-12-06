@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Teenpatti.Data
+namespace Teenpatti.Data.Socket
 {
     public class Room
     {

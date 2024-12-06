@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Teenpatti.Data
+namespace Teenpatti.Data.Socket
 {
     [Serializable]
     public class Player

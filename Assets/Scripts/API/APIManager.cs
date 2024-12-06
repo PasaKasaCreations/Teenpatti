@@ -1,9 +1,9 @@
 using Enums;
 using Helpers;
 using Newtonsoft.Json;
+using ScriptableObjects.Logging;
 using System;
 using System.Collections;
-using System.Net;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -12,6 +12,10 @@ namespace API
 {
     public class APIManager : Singleton<APIManager>
     {
+        [Header("Logger")]
+        [SerializeField]
+        private Debugger apiLogger;
+
         public void Get<R>(string uri, Action<R> callback = null, Action errorCallback = null)
         {
             StartCoroutine(GetRequest(uri, callback, errorCallback));
@@ -41,15 +45,15 @@ namespace API
             {
                 case UnityWebRequest.Result.ConnectionError:
                 case UnityWebRequest.Result.DataProcessingError:
-                    Debug.LogError(": Error: " + webRequest.error);
+                    apiLogger.Log(": Error: " + webRequest.error, LoggingType.Warning);
                     errorCallback?.Invoke();
                     break;
                 case UnityWebRequest.Result.ProtocolError:
-                    Debug.LogError(": HTTP Error: " + webRequest.error);
+                    apiLogger.Log(": HTTP Error: " + webRequest.error, LoggingType.Warning);
                     errorCallback?.Invoke();
                     break;
                 case UnityWebRequest.Result.Success:
-                    Debug.Log("Received: " + webRequest.downloadHandler.text);
+                    apiLogger.Log("Received: " + webRequest.downloadHandler.text, LoggingType.Warning);
                     R result = JsonConvert.DeserializeObject<R>(webRequest.downloadHandler.text);
                     callback?.Invoke(result);
                     break;
@@ -116,52 +120,6 @@ namespace API
                 callback?.Invoke();
             }
         }
-
-        #region Test All Requests
-        [ContextMenu("Test Get")]
-        private void TestGet()
-        {
-            Get<string>("https://fakestoreapi.com/products/1");
-        }
-
-        [ContextMenu("Test Post")]
-        private void TestPost()
-        {
-            Post<Auth, string>("https://fakestoreapi.com/auth/login", new Auth()
-            {
-                username = "mor_2314",
-                password = "83r5^_",
-            });
-        }
-
-        [ContextMenu("Test Put")]
-        private void TestPut()
-        {
-            Put<Product, string>("https://fakestoreapi.com/products/7", new Product()
-            {
-                title = "Hello",
-                price = 11.2f,
-            });
-        }
-
-        [ContextMenu("Test Delete")]
-        private void TestDelete()
-        {
-            Delete("https://fakestoreapi.com/users/1");
-        }
-
-        private class Auth
-        {
-            public string username;
-            public string password;
-        }
-
-        private class Product
-        {
-            public string title;
-            public float price;
-        }
-        #endregion
     }
 }
 

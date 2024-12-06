@@ -4,7 +4,7 @@ using UnityEngine;
 using SocketIOClient.Newtonsoft.Json;
 using Constants;
 using Helpers;
-using Teenpatti.Data;
+using Teenpatti.Data.Socket;
 using ScriptableObjects.EventBus;
 using ScriptableObjects.Logging;
 using Newtonsoft.Json;

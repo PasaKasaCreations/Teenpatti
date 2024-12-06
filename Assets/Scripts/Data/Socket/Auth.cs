@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Teenpatti.Data
+namespace Teenpatti.Data.Socket
 {
     [Serializable]
     public class Auth

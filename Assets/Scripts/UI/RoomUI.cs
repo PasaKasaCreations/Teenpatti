@@ -1,5 +1,5 @@
 using ScriptableObjects.EventBus;
-using Teenpatti.Data;
+using Teenpatti.Data.Socket;
 using TMPro;
 using UnityEngine;
 

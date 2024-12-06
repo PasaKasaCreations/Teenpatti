@@ -1,4 +1,4 @@
-using Teenpatti.Data;
+using Teenpatti.Data.Socket;
 using UnityEngine;
 
 namespace ScriptableObjects.EventBus
