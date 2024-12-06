@@ -53,7 +53,7 @@ namespace API
                     errorCallback?.Invoke();
                     break;
                 case UnityWebRequest.Result.Success:
-                    apiLogger.Log("Received: " + webRequest.downloadHandler.text, LoggingType.Warning);
+                    apiLogger.Log("Received: " + webRequest.downloadHandler.text);
                     R result = JsonConvert.DeserializeObject<R>(webRequest.downloadHandler.text);
                     callback?.Invoke(result);
                     break;
@@ -68,12 +68,12 @@ namespace API
 
             if (webRequest.result != UnityWebRequest.Result.Success)
             {
-                Debug.LogError(webRequest.error);
+                apiLogger.Log(webRequest.error, LoggingType.Warning);
                 errorCallback?.Invoke();
             }
             else
             {
-                Debug.Log(webRequest.downloadHandler.text); 
+                apiLogger.Log(webRequest.downloadHandler.text);
                 R result = JsonConvert.DeserializeObject<R>(webRequest.downloadHandler.text);
                 callback?.Invoke(result);
             }
@@ -93,12 +93,12 @@ namespace API
 
             if (webRequest.result != UnityWebRequest.Result.Success)
             {
-                Debug.Log(webRequest.error);
+                apiLogger.Log(webRequest.error, LoggingType.Warning);
                 errorCallback?.Invoke();
             }
             else
             {
-                Debug.Log(webRequest.downloadHandler.text);
+                apiLogger.Log(webRequest.downloadHandler.text);
                 R result = JsonConvert.DeserializeObject<R>(webRequest.downloadHandler.text);
                 callback?.Invoke(result);
             }
@@ -111,12 +111,12 @@ namespace API
 
             if (webRequest.result != UnityWebRequest.Result.Success)
             {
-                Debug.LogError(webRequest.error);
+                apiLogger.Log(webRequest.error, LoggingType.Warning);
                 errorCallback?.Invoke();
             }
             else
             {
-                Debug.Log("Deleted");
+                apiLogger.Log("Deleted");
                 callback?.Invoke();
             }
         }

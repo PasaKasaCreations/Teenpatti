@@ -228,7 +228,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 30.9, y: 6}
+  m_AnchoredPosition: {x: 30.899994, y: 6}
   m_SizeDelta: {x: 55, y: 55}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &118393681
@@ -281,6 +281,7 @@ GameObject:
   - component: {fileID: 162072256}
   - component: {fileID: 162072255}
   - component: {fileID: 162072254}
+  - component: {fileID: 162072258}
   m_Layer: 5
   m_Name: LoginCanvas
   m_TagString: Untagged
@@ -372,6 +373,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &162072258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162072253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1d1ff60e07575d4ea1b285811e2f61d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &232045795
 GameObject:
   m_ObjectHideFlags: 0
@@ -1284,7 +1297,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 45.314, y: 6.672}
+  m_AnchoredPosition: {x: 45.313995, y: 6.672001}
   m_SizeDelta: {x: -90.628, y: -13.343}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &960767847
@@ -1894,7 +1907,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1549728992}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 162072258}
+        m_TargetAssemblyTypeName: Teenpatti.UI.LoginUI, Assembly-CSharp
+        m_MethodName: GeustLogin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1549728992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2042,7 +2067,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 50.09504, y: 5.989998}
+  m_AnchoredPosition: {x: 50.09503, y: 5.989998}
   m_SizeDelta: {x: -100.19, y: -11.98}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1694484690

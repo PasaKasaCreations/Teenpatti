@@ -1,8 +1,7 @@
-
-namespace Teenpatti.Data.API
+﻿namespace Teenpatti.Data.API
 {
     public class GuestLoginData
     {
-        public string deviceId;
+        public Player player;
     }
 }

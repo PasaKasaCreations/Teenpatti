@@ -8,15 +8,15 @@ namespace Teenpatti.UI
 {
     public class LoginUI : MonoBehaviour
     {
-        public void Login()
+        public void GeustLogin()
         {
-            APIManager.Instance.Post<GuestLoginData, string>(APIConstants.APIURI + APIConstants.GuestLogin, new GuestLoginData()
+            APIManager.Instance.Post<GuestLogin, GuestLoginResponse>(APIConstants.GuestLogin, new GuestLogin()
             {
-                deviceId = "9774d56d682e549c"
+                deviceId = SystemInfo.deviceUniqueIdentifier,
             },
-            (w) =>
+            (response) =>
             {
-                print("Successfully LoggedIn...");
+                print(response);
             },
             () =>
             {

@@ -6,6 +6,6 @@ namespace Constants
     {
         public const string APIURI = "http://192.168.1.90:8081/api/v1/";
 
-        public const string GuestLogin = "auth/guest/login";
+        public const string GuestLogin = APIURI + "auth/guest/login";
     }
 }
