@@ -2033,6 +2033,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1555768218}
   m_CullTransparentMesh: 1
+--- !u!1 &1597412888
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1597412889}
+  - component: {fileID: 1597412890}
+  m_Layer: 0
+  m_Name: Additive Scene Loader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1597412889
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597412888}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1597412890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597412888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ffda6ff54262844fa4ce2c572357380, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  additiveScenesToLoad:
+  - scene: {fileID: 102900000, guid: 96b19f2981353874f871b25f13451b7a, type: 3}
+    sceneName: No Destroy Scripts
 --- !u!1 &1694484688
 GameObject:
   m_ObjectHideFlags: 0
@@ -2606,3 +2653,4 @@ SceneRoots:
   - {fileID: 608067070}
   - {fileID: 162072257}
   - {fileID: 321634321}
+  - {fileID: 1597412889}
