@@ -7,7 +7,7 @@ using Helpers;
 using Teenpatti.Data.Socket;
 using ScriptableObjects.EventBus;
 using ScriptableObjects.Logging;
-using Newtonsoft.Json;
+using Teenpatti;
 
 
 namespace Socket
@@ -32,6 +32,7 @@ namespace Socket
 
         private async void Initialize()
         {
+            string token = TokenManager.Instance.GetToken();
             Uri uri = new(SocketConstants.SocketURI);
            
             SocketIOOptions socketOptions = new SocketIOOptions
@@ -39,7 +40,7 @@ namespace Socket
                 Path = "/socket.io",
                 Auth = new Auth()
                 {
-                    token = SocketConstants.Token,
+                    token = $"Bearer {token}",
                 },
                 Transport = SocketIOClient.Transport.TransportProtocol.WebSocket,
                 ReconnectionAttempts = 10,
