@@ -16,7 +16,7 @@ namespace Teenpatti.UI
             },
             (response) =>
             {
-                print(response);
+                TokenManager.Instance.SetToken(response.data.accessToken, response.data.refreshToken);
             },
             () =>
             {
