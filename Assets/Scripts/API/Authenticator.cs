@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Teenpatti
 {
-    public class TokenManager : Singleton<TokenManager>
+    public class Authenticator : Singleton<Authenticator>
     {
         public string GetToken()
         {

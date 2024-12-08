@@ -1,8 +1,8 @@
 using API;
 using Constants;
+using Socket;
 using Teenpatti.Data.API;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Teenpatti.UI
 {
@@ -14,14 +14,15 @@ namespace Teenpatti.UI
             {
                 deviceId = SystemInfo.deviceUniqueIdentifier,
             },
-            (response) =>
-            {
-                TokenManager.Instance.SetToken(response.data.accessToken, response.data.refreshToken);
-            },
-            () =>
-            {
-                print("Error while logging in");
-            });
+           (response) =>
+           {
+               Authenticator.Instance.SetToken(response.data.accessToken, response.data.refreshToken);
+               SocketManager.Instance.Initialize();
+           },
+           () =>
+           {
+               print("Error while logging in");
+           });
         }
     }
 }

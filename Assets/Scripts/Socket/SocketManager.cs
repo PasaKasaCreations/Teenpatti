@@ -25,14 +25,9 @@ namespace Socket
         [SerializeField]
         private Debugger socketDebugger;
 
-        private void Start()
+        public async void Initialize()
         {
-            Initialize();
-        }
-
-        private async void Initialize()
-        {
-            string token = TokenManager.Instance.GetToken();
+            string token = Authenticator.Instance.GetToken();
             Uri uri = new(SocketConstants.SocketURI);
            
             SocketIOOptions socketOptions = new SocketIOOptions
