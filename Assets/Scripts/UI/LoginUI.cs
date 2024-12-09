@@ -10,8 +10,11 @@ namespace Teenpatti.UI
 {
     public class LoginUI : MonoBehaviour
     {
+        [Header("Scenes")]
         [SerializeField]
-        private SceneField sceneField;
+        private SceneField menuScene;
+        [SerializeField]
+        private SceneField dashboardScene;
 
         public void GeustLogin()
         {
@@ -23,7 +26,8 @@ namespace Teenpatti.UI
            {
                Authenticator.Instance.SetToken(response.data.accessToken, response.data.refreshToken);
                SocketManager.Instance.Initialize();
-               SceneChanger.Instance.ChangeAsync(sceneField);
+               SceneLoaderUnloader.Instance.ChangeAsync(dashboardScene, LoadSceneMode.Additive);
+               SceneLoaderUnloader.Instance.UnloadSceneAsync(menuScene);
            },
            (error) =>
            {
