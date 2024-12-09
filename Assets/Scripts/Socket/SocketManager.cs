@@ -150,6 +150,8 @@ namespace Socket
             callback?.Invoke();
         }
 
+        public bool IsSocketConnected() => _socket.Connected;
+
         private async void OnDisable()
         {
             if(_socket != null )

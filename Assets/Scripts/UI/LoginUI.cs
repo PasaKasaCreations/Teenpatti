@@ -23,7 +23,7 @@ namespace Teenpatti.UI
            {
                Authenticator.Instance.SetToken(response.data.accessToken, response.data.refreshToken);
                SocketManager.Instance.Initialize();
-               SceneChanger.Instance.Change(sceneField);
+               SceneChanger.Instance.ChangeAsync(sceneField);
            },
            (error) =>
            {
