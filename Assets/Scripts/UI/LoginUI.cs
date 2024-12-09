@@ -1,5 +1,6 @@
 using API;
 using Constants;
+using Helpers;
 using Socket;
 using Teenpatti.Data.API;
 using UnityEngine;
@@ -9,6 +10,9 @@ namespace Teenpatti.UI
 {
     public class LoginUI : MonoBehaviour
     {
+        [SerializeField]
+        private SceneField sceneField;
+
         public void GeustLogin()
         {
             APIManager.Instance.Post<GuestLogin, GuestLoginResponse>(APIConstants.GuestLogin, new GuestLogin()
@@ -19,6 +23,7 @@ namespace Teenpatti.UI
            {
                Authenticator.Instance.SetToken(response.data.accessToken, response.data.refreshToken);
                SocketManager.Instance.Initialize();
+               SceneChanger.Instance.Change(sceneField);
            },
            (error) =>
            {
