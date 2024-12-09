@@ -3,6 +3,7 @@ using Constants;
 using Socket;
 using Teenpatti.Data.API;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Teenpatti.UI
 {
@@ -19,9 +20,9 @@ namespace Teenpatti.UI
                Authenticator.Instance.SetToken(response.data.accessToken, response.data.refreshToken);
                SocketManager.Instance.Initialize();
            },
-           () =>
+           (error) =>
            {
-               print("Error while logging in");
+               print(error.message[0]);
            });
         }
     }

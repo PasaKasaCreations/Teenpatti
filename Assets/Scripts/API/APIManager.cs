@@ -5,6 +5,7 @@ using ScriptableObjects.Logging;
 using System;
 using System.Collections;
 using System.Text;
+using Teenpatti.Data;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -20,52 +21,47 @@ namespace API
         [SerializeField]
         private Debugger apiLogger;
 
-        public void Get<R>(string uri, Action<R> callback = null, Action errorCallback = null)
+        public void Get<R>(string uri, Action<R> callback = null, Action<Error> errorCallback = null)
         {
             StartCoroutine(GetRequest(uri, callback, errorCallback));
         }
 
-        public void Post<T, R>(string uri, T data, Action<R> callback = null, Action errorCallback = null)
+        public void Post<T, R>(string uri, T data, Action<R> callback = null, Action<Error> errorCallback = null)
         {
             StartCoroutine(PostRequest(uri, data, callback, errorCallback));
         }
 
-        public void Put<T, R>(string uri, T data, Action<R> callback = null, Action errorCallback = null, PutType putType = PutType.Put)
+        public void Put<T, R>(string uri, T data, Action<R> callback = null, Action<Error> errorCallback = null, PutType putType = PutType.Put)
         {
             StartCoroutine(PutRequest(uri, data, callback, errorCallback, putType));
         }
 
-        public void Delete(string uri, Action callback = null, Action errorCallback = null)
+        public void Delete(string uri, Action callback = null, Action<Error> errorCallback = null)
         {
             StartCoroutine(DeleteRequest(uri, callback, errorCallback));
         }
 
-        private IEnumerator GetRequest<R>(string uri, Action<R> callback, Action errorCallback = null)
+        private IEnumerator GetRequest<R>(string uri, Action<R> callback, Action<Error> errorCallback = null)
         {
             using UnityWebRequest webRequest = UnityWebRequest.Get(uri);
             webRequest.timeout = timeoutSeconds;
             yield return webRequest.SendWebRequest();
 
-            switch (webRequest.result)
+            if(webRequest.result != UnityWebRequest.Result.Success)
             {
-                case UnityWebRequest.Result.ConnectionError:
-                case UnityWebRequest.Result.DataProcessingError:
-                    apiLogger.Log(": Error: " + webRequest.error, LoggingType.Warning);
-                    errorCallback?.Invoke();
-                    break;
-                case UnityWebRequest.Result.ProtocolError:
-                    apiLogger.Log(": HTTP Error: " + webRequest.error, LoggingType.Warning);
-                    errorCallback?.Invoke();
-                    break;
-                case UnityWebRequest.Result.Success:
-                    apiLogger.Log("Received: " + webRequest.downloadHandler.text);
-                    R result = JsonConvert.DeserializeObject<R>(webRequest.downloadHandler.text);
-                    callback?.Invoke(result);
-                    break;
+                apiLogger.Log(webRequest.error, LoggingType.Warning);
+                Error error = JsonConvert.DeserializeObject<Error>(webRequest.downloadHandler.text);
+                errorCallback?.Invoke(error);
+            }
+            else
+            {
+                apiLogger.Log("Received: " + webRequest.downloadHandler.text);
+                R result = JsonConvert.DeserializeObject<R>(webRequest.downloadHandler.text);
+                callback?.Invoke(result);
             }
         }
 
-        private IEnumerator PostRequest<T, R>(string uri, T data, Action<R> callback, Action errorCallback = null)
+        private IEnumerator PostRequest<T, R>(string uri, T data, Action<R> callback, Action<Error> errorCallback = null)
         {
             string jsonData = JsonConvert.SerializeObject(data);
             using UnityWebRequest webRequest = UnityWebRequest.Post(uri, jsonData, "application/json");
@@ -75,7 +71,8 @@ namespace API
             if (webRequest.result != UnityWebRequest.Result.Success)
             {
                 apiLogger.Log(webRequest.error, LoggingType.Warning);
-                errorCallback?.Invoke();
+                Error error = JsonConvert.DeserializeObject<Error>(webRequest.downloadHandler.text);
+                errorCallback?.Invoke(error);
             }
             else
             {
@@ -85,7 +82,7 @@ namespace API
             }
         }
 
-        private IEnumerator PutRequest<T, R>(string uri, T data, Action<R> callback, Action errorCallback = null, PutType putType = PutType.Put)
+        private IEnumerator PutRequest<T, R>(string uri, T data, Action<R> callback, Action<Error> errorCallback = null, PutType putType = PutType.Put)
         {
             string jsonData = JsonConvert.SerializeObject(data);
             byte[] bodyData = Encoding.UTF8.GetBytes(jsonData);
@@ -101,7 +98,9 @@ namespace API
             if (webRequest.result != UnityWebRequest.Result.Success)
             {
                 apiLogger.Log(webRequest.error, LoggingType.Warning);
-                errorCallback?.Invoke();
+                Error error = JsonConvert.DeserializeObject<Error>(webRequest.downloadHandler.text);
+                errorCallback?.Invoke(error);
+                errorCallback?.Invoke(error);
             }
             else
             {
@@ -111,7 +110,7 @@ namespace API
             }
         }
 
-        private IEnumerator DeleteRequest(string uri, Action callback, Action errorCallback = null)
+        private IEnumerator DeleteRequest(string uri, Action callback, Action<Error> errorCallback = null)
         {
             using UnityWebRequest webRequest = UnityWebRequest.Delete(uri);
             webRequest.timeout = timeoutSeconds;
@@ -120,7 +119,9 @@ namespace API
             if (webRequest.result != UnityWebRequest.Result.Success)
             {
                 apiLogger.Log(webRequest.error, LoggingType.Warning);
-                errorCallback?.Invoke();
+                Error error = JsonConvert.DeserializeObject<Error>(webRequest.downloadHandler.text);
+                errorCallback?.Invoke(error);
+                errorCallback?.Invoke(error);
             }
             else
             {
