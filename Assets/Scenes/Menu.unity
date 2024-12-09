@@ -385,6 +385,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1d1ff60e07575d4ea1b285811e2f61d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneField:
+    scene: {fileID: 102900000, guid: 367fa9aecb9225d46b808240cc9ee804, type: 3}
+    sceneName: Dashboard
 --- !u!1 &232045795
 GameObject:
   m_ObjectHideFlags: 0
