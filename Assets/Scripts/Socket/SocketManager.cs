@@ -152,16 +152,19 @@ namespace Socket
 
         private async void OnDisable()
         {
-            _socket.OnConnected -= OnConnected;
-            _socket.OnDisconnected -= OnDisconnected;
-            _socket.OnError -= OnError;
-            _socket.OnReconnectAttempt -= OnReconnectAttempt; ;
-            _socket.OnPing -= OnPing;
-            _socket.OnReconnected -= OnReconnected;
-            _socket.OnReconnectError -= OnReconnectedError; ;
-            _socket.OnReconnectFailed -= OnReconnectFailed;
+            if(_socket != null )
+            {
+                _socket.OnConnected -= OnConnected;
+                _socket.OnDisconnected -= OnDisconnected;
+                _socket.OnError -= OnError;
+                _socket.OnReconnectAttempt -= OnReconnectAttempt; ;
+                _socket.OnPing -= OnPing;
+                _socket.OnReconnected -= OnReconnected;
+                _socket.OnReconnectError -= OnReconnectedError; ;
+                _socket.OnReconnectFailed -= OnReconnectFailed;
 
-            await _socket.DisconnectAsync();
+                await _socket.DisconnectAsync();
+            }
         }
     }
 }
