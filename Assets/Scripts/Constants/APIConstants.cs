@@ -8,5 +8,7 @@ namespace Constants
 
         public const string GuestLogin = APIURI + "auth/guest/login";
         public const string RefreshLogin = APIURI + "auth/refresh-token";
+
+        public const string GetDailyReward = APIURI + "daily-reward";
     }
 }
