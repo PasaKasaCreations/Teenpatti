@@ -27,7 +27,7 @@ namespace Socket
 
         public async void Initialize()
         {
-            string token = Authenticator.Instance.GetToken();
+            string token = Authenticator.Instance.GetAccessToken();
             Uri uri = new(SocketConstants.SocketURI);
            
             SocketIOOptions socketOptions = new SocketIOOptions

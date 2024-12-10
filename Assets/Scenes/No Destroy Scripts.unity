@@ -437,7 +437,7 @@ GameObject:
   - component: {fileID: 1881660411}
   - component: {fileID: 1881660412}
   m_Layer: 0
-  m_Name: TokenManager
+  m_Name: Authenticator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
