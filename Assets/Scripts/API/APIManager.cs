@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using ScriptableObjects.Logging;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using Teenpatti.Data;
 using UnityEngine;
@@ -21,9 +22,9 @@ namespace API
         [SerializeField]
         private Debugger apiLogger;
 
-        public void Get<R>(string uri, Action<R> callback = null, Action<Error> errorCallback = null)
+        public void Get<R>(string uri, Dictionary<string, string> headers = null, Action<R> callback = null, Action<Error> errorCallback = null)
         {
-            StartCoroutine(GetRequest(uri, callback, errorCallback));
+            StartCoroutine(GetRequest(uri, headers, callback, errorCallback));
         }
 
         public void Post<T, R>(string uri, T data, Action<R> callback = null, Action<Error> errorCallback = null)
@@ -41,9 +42,16 @@ namespace API
             StartCoroutine(DeleteRequest(uri, callback, errorCallback));
         }
 
-        private IEnumerator GetRequest<R>(string uri, Action<R> callback, Action<Error> errorCallback = null)
+        private IEnumerator GetRequest<R>(string uri, Dictionary<string, string> headers, Action<R> callback, Action<Error> errorCallback = null)
         {
             using UnityWebRequest webRequest = UnityWebRequest.Get(uri);
+            if(headers != null)
+            {
+                foreach (KeyValuePair<string, string> header in headers)
+                {
+                    webRequest.SetRequestHeader(header.Key, header.Value);
+                }
+            }
             webRequest.timeout = timeoutSeconds;
             yield return webRequest.SendWebRequest();
 
