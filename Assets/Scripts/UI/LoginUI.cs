@@ -2,6 +2,8 @@ using API;
 using Constants;
 using Helpers;
 using Socket;
+using System;
+using System.Globalization;
 using Teenpatti.Data.API;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,6 +23,8 @@ namespace Teenpatti.UI
             APIManager.Instance.Post<GuestLogin, GuestLoginResponse>(APIConstants.GuestLogin, new GuestLogin()
             {
                 deviceId = SystemInfo.deviceUniqueIdentifier,
+                country = RegionInfo.CurrentRegion.TwoLetterISORegionName,
+                timezone = "America/New_York"
             },
            (response) =>
            {
