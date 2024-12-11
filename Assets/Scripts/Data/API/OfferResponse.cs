@@ -1,3 +1,5 @@
+using System;
+
 namespace Teenpatti.Data.API
 {
     public class OfferResponse
@@ -7,6 +9,7 @@ namespace Teenpatti.Data.API
         public OfferData[] data;
     }
 
+    [Serializable]
     public class OfferData
     {
         public string id;
