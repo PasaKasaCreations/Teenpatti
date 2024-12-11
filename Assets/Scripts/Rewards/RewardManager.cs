@@ -1,8 +1,7 @@
 using API;
 using Constants;
 using ScriptableObjects.Logging;
-using System;
-using Teenpatti.Data;
+using Teenpatti.Data.API;
 using UnityEngine;
 
 namespace Teenpatti.Rewards
@@ -11,7 +10,7 @@ namespace Teenpatti.Rewards
     {
         [Header("Rewards")]
         [SerializeField]
-        private DailyReward.DailyRewardData dailyRewardData;
+        private DailyRewardData dailyRewardData;
 
         [Header("Debugger")]
         [SerializeField]
