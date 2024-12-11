@@ -6,6 +6,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using Teenpatti;
 using Teenpatti.Data;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -22,14 +23,20 @@ namespace API
         [SerializeField]
         private Debugger apiLogger;
 
+        [Header("Default Values")]
+        private Dictionary<string, string> headers => new()
+        {
+            {"Authorization", $"Bearer {Authenticator.Instance.GetAccessToken()}"}
+        };
+
         public void Get<R>(string uri, Action<R> callback = null, Action<Error> errorCallback = null, Dictionary<string, string> headers = null)
         {
-            StartCoroutine(GetRequest(uri, headers, callback, errorCallback));
+            StartCoroutine(GetRequest(uri, headers == null ? this.headers : headers, callback, errorCallback));
         }
 
         public void Post<T, R>(string uri, T data, Action<R> callback = null, Action<Error> errorCallback = null, Dictionary<string, string> headers = null)
         {
-            StartCoroutine(PostRequest(uri, data, headers, callback, errorCallback));
+            StartCoroutine(PostRequest(uri, data, headers == null ? this.headers : headers, callback, errorCallback));
         }
 
         public void Put<T, R>(string uri, T data, Action<R> callback = null, Action<Error> errorCallback = null, PutType putType = PutType.Put)
