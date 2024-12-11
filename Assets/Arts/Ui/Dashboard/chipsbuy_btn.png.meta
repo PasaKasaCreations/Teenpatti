@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b30130293c58f794b807810b2e77769e
+guid: 14c7d8c13269f6b4eb159f6466c4efcf
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -106,24 +106,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: chipsbuy_btn_0
+      name: chipsbuy_btn 1_0
       rect:
         serializedVersion: 2
         x: 2
@@ -138,8 +125,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 67ff4f4ab4bc46940b411f57ff226473
-      internalID: 1593830770
+      spriteID: 38d7403804aa16b4ba248403b74fd3f7
+      internalID: 1764046763
       vertices: []
       indices: 
       edges: []
@@ -148,7 +135,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 277a3528e21e0bb4fbaa425cbcfd3e8c
     internalID: 0
     vertices: []
     indices: 
@@ -158,7 +145,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      chipsbuy_btn_0: 1593830770
+      chipsbuy_btn 1_0: 1764046763
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
