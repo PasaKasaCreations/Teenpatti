@@ -1,24 +1,30 @@
 
+using System;
+
 namespace Teenpatti.Data
 {
+    [Serializable]
     public class DailyReward
     {
         public bool success;
         public string message;
-        public Data data;
-    }
-    public class Data
-    {
-        public string content;
-        public Record[] records;
-    }
+        public DailyRewardData data;
 
-    public class Record
-    {
-        public string id;
-        public int streakDays;
-        public string rewardValue;
-        public bool isClaimed;
-        public string rewardUnlockedAt;
+        [Serializable]
+        public class DailyRewardData
+        {
+            public string content;
+            public DailyRewardRecord[] records;
+        }
+
+        [Serializable]
+        public class DailyRewardRecord
+        {
+            public string id;
+            public int streakDays;
+            public string rewardValue;
+            public bool isClaimed;
+            public string rewardUnlockedAt;
+        }
     }
 }

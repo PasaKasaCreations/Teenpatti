@@ -35,7 +35,7 @@ namespace Teenpatti.UI
            },
            (error) =>
            {
-               print(error.message[0]);
+               print(error.message);
            });
         }
     }
