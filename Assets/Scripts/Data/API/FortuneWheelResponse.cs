@@ -9,13 +9,14 @@ namespace Teenpatti.Data.API
         public FortuneWheelData[] data;
     }
 
+    [Serializable]
     public class FortuneWheelData
     {
         public string type;
         public string value;
     }
 
-    public class Root
+    public class FortuneWheelSpinResponse
     {
         public bool success;
         public string message;
