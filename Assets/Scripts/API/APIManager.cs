@@ -22,14 +22,14 @@ namespace API
         [SerializeField]
         private Debugger apiLogger;
 
-        public void Get<R>(string uri, Dictionary<string, string> headers = null, Action<R> callback = null, Action<Error> errorCallback = null)
+        public void Get<R>(string uri, Action<R> callback = null, Action<Error> errorCallback = null, Dictionary<string, string> headers = null)
         {
             StartCoroutine(GetRequest(uri, headers, callback, errorCallback));
         }
 
-        public void Post<T, R>(string uri, T data, Action<R> callback = null, Action<Error> errorCallback = null)
+        public void Post<T, R>(string uri, T data, Action<R> callback = null, Action<Error> errorCallback = null, Dictionary<string, string> headers = null)
         {
-            StartCoroutine(PostRequest(uri, data, callback, errorCallback));
+            StartCoroutine(PostRequest(uri, data, headers, callback, errorCallback));
         }
 
         public void Put<T, R>(string uri, T data, Action<R> callback = null, Action<Error> errorCallback = null, PutType putType = PutType.Put)
@@ -69,10 +69,17 @@ namespace API
             }
         }
 
-        private IEnumerator PostRequest<T, R>(string uri, T data, Action<R> callback, Action<Error> errorCallback = null)
+        private IEnumerator PostRequest<T, R>(string uri, T data, Dictionary<string, string> headers = null, Action<R> callback = null, Action<Error> errorCallback = null)
         {
             string jsonData = JsonConvert.SerializeObject(data);
             using UnityWebRequest webRequest = UnityWebRequest.Post(uri, jsonData, "application/json");
+            if (headers != null)
+            {
+                foreach (KeyValuePair<string, string> header in headers)
+                {
+                    webRequest.SetRequestHeader(header.Key, header.Value);
+                }
+            }
             webRequest.timeout = timeoutSeconds;
             yield return webRequest.SendWebRequest();
 
