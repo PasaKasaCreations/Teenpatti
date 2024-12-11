@@ -1,4 +1,3 @@
-using UnityEngine;
 
 namespace Constants
 {
@@ -11,5 +10,10 @@ namespace Constants
 
         public const string GetDailyRewards = APIURI + "daily-reward";
         public const string ClaimDailyReward = APIURI + "daily-reward/claim";
+
+        public const string GetOffers = APIURI + "offers";
+
+        public const string GetFortuneWheelValues = APIURI + "fortune-wheel/values";
+        public const string SpinFortuneWheel = APIURI + "fortune-wheel/spin";
     }
-}
+}   

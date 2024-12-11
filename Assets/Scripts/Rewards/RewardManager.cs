@@ -27,10 +27,6 @@ namespace Teenpatti.Rewards
             (error) =>
             {
                 apiDebugger.Log(error.message, Enums.LoggingType.Warning);
-            },
-            new()
-            {
-                {"Authorization", $"Bearer {Authenticator.Instance.GetAccessToken()}"}
             });
         }
 
@@ -48,10 +44,6 @@ namespace Teenpatti.Rewards
             (error) =>
             {
                 apiDebugger.Log(error.message, Enums.LoggingType.Warning);
-            },
-            new()
-            {
-                {"Authorization", $"Bearer {Authenticator.Instance.GetAccessToken()}"}
             });
         }
 
