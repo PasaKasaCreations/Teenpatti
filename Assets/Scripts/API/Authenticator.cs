@@ -1,7 +1,8 @@
 using API;
 using Constants;
 using Helpers;
-using Teenpatti.Data;
+using System;
+using System.Collections;
 using Teenpatti.Data.API;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ namespace Teenpatti
     public class Authenticator : Singleton<Authenticator>
     {
         [ContextMenu("Refresh Login")]
-        public void RefreshLogin()
+        public void RefreshLogin(Action recallCallback = null)
         {
             APIManager.Instance.Post<RefreshLogin, RefreshLoginResponse>(APIConstants.RefreshLogin, new RefreshLogin()
             {
@@ -19,6 +20,7 @@ namespace Teenpatti
            (response) =>
            {
                SetToken(response.data.accessToken, response.data.refreshToken);
+               recallCallback?.Invoke();
            },
            (error) =>
            {

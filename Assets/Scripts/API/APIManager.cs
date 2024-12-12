@@ -18,6 +18,7 @@ namespace API
         [Header("Timeout")]
         [SerializeField]
         private int timeoutSeconds = 10;
+        private bool _isTokenRefreshing;
 
         [Header("Logger")]
         [SerializeField]
@@ -64,6 +65,12 @@ namespace API
 
             if(webRequest.result != UnityWebRequest.Result.Success)
             {
+                if(webRequest.responseCode == 401)
+                {
+                    IEnumerator getEnumerator = GetRequest(uri, headers, callback, errorCallback);
+                    RefreshToken(getEnumerator);
+                }
+
                 apiLogger.Log(webRequest.error, LoggingType.Warning);
                 Error error = JsonConvert.DeserializeObject<Error>(webRequest.downloadHandler.text);
                 errorCallback?.Invoke(error);
@@ -92,6 +99,12 @@ namespace API
 
             if (webRequest.result != UnityWebRequest.Result.Success)
             {
+                if (webRequest.responseCode == 401)
+                {
+                    IEnumerator postEnumerator = PostRequest(uri, data, headers, callback, errorCallback);
+                    RefreshToken(postEnumerator);
+                }
+
                 apiLogger.Log(webRequest.error, LoggingType.Warning);
                 Error error = JsonConvert.DeserializeObject<Error>(webRequest.downloadHandler.text);
                 errorCallback?.Invoke(error);
@@ -119,6 +132,12 @@ namespace API
 
             if (webRequest.result != UnityWebRequest.Result.Success)
             {
+                if (webRequest.responseCode == 401)
+                {
+                    IEnumerator piuEnumerator = PutRequest(uri, data, callback, errorCallback);
+                    RefreshToken(piuEnumerator);
+                }
+
                 apiLogger.Log(webRequest.error, LoggingType.Warning);
                 Error error = JsonConvert.DeserializeObject<Error>(webRequest.downloadHandler.text);
                 errorCallback?.Invoke(error);
@@ -140,6 +159,12 @@ namespace API
 
             if (webRequest.result != UnityWebRequest.Result.Success)
             {
+                if (webRequest.responseCode == 401)
+                {
+                    IEnumerator deleteEnumerator = DeleteRequest(uri, callback, errorCallback);
+                    RefreshToken(deleteEnumerator);
+                }
+
                 apiLogger.Log(webRequest.error, LoggingType.Warning);
                 Error error = JsonConvert.DeserializeObject<Error>(webRequest.downloadHandler.text);
                 errorCallback?.Invoke(error);
@@ -150,6 +175,24 @@ namespace API
                 apiLogger.Log("Deleted");
                 callback?.Invoke();
             }
+        }
+
+        private void RefreshToken(IEnumerator enumerator)
+        {
+            if (!_isTokenRefreshing)
+            {
+                Authenticator.Instance.RefreshLogin(() =>
+                {
+                    StartCoroutine(RefreshRecallCoroutine(enumerator));
+                });
+            }
+        }
+
+        private IEnumerator RefreshRecallCoroutine(IEnumerator recallCoroutine)
+        {
+            _isTokenRefreshing = true;
+            yield return StartCoroutine(recallCoroutine);
+            _isTokenRefreshing = false;
         }
 
         private void OnDisable()
