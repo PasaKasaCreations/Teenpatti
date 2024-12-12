@@ -71,9 +71,12 @@ namespace API
                     RefreshToken(getEnumerator);
                 }
 
-                apiLogger.Log(webRequest.error, LoggingType.Warning);
-                Error error = JsonConvert.DeserializeObject<Error>(webRequest.downloadHandler.text);
-                errorCallback?.Invoke(error);
+                if (!_isTokenRefreshing)
+                {
+                    apiLogger.Log(webRequest.error, LoggingType.Warning);
+                    Error error = JsonConvert.DeserializeObject<Error>(webRequest.downloadHandler.text);
+                    errorCallback?.Invoke(error);
+                }
             }
             else
             {
@@ -105,9 +108,12 @@ namespace API
                     RefreshToken(postEnumerator);
                 }
 
-                apiLogger.Log(webRequest.error, LoggingType.Warning);
-                Error error = JsonConvert.DeserializeObject<Error>(webRequest.downloadHandler.text);
-                errorCallback?.Invoke(error);
+                if (!_isTokenRefreshing)
+                {
+                    apiLogger.Log(webRequest.error, LoggingType.Warning);
+                    Error error = JsonConvert.DeserializeObject<Error>(webRequest.downloadHandler.text);
+                    errorCallback?.Invoke(error);
+                }
             }
             else
             {
@@ -138,10 +144,13 @@ namespace API
                     RefreshToken(piuEnumerator);
                 }
 
-                apiLogger.Log(webRequest.error, LoggingType.Warning);
-                Error error = JsonConvert.DeserializeObject<Error>(webRequest.downloadHandler.text);
-                errorCallback?.Invoke(error);
-                errorCallback?.Invoke(error);
+                if(!_isTokenRefreshing)
+                {
+                    apiLogger.Log(webRequest.error, LoggingType.Warning);
+                    Error error = JsonConvert.DeserializeObject<Error>(webRequest.downloadHandler.text);
+                    errorCallback?.Invoke(error);
+                    errorCallback?.Invoke(error);
+                }
             }
             else
             {
@@ -165,10 +174,13 @@ namespace API
                     RefreshToken(deleteEnumerator);
                 }
 
-                apiLogger.Log(webRequest.error, LoggingType.Warning);
-                Error error = JsonConvert.DeserializeObject<Error>(webRequest.downloadHandler.text);
-                errorCallback?.Invoke(error);
-                errorCallback?.Invoke(error);
+                if (!_isTokenRefreshing)
+                {
+                    apiLogger.Log(webRequest.error, LoggingType.Warning);
+                    Error error = JsonConvert.DeserializeObject<Error>(webRequest.downloadHandler.text);
+                    errorCallback?.Invoke(error);
+                    errorCallback?.Invoke(error);
+                }
             }
             else
             {
@@ -181,6 +193,7 @@ namespace API
         {
             if (!_isTokenRefreshing)
             {
+                _isTokenRefreshing = true;
                 Authenticator.Instance.RefreshLogin(() =>
                 {
                     StartCoroutine(RefreshRecallCoroutine(enumerator));
@@ -190,7 +203,6 @@ namespace API
 
         private IEnumerator RefreshRecallCoroutine(IEnumerator recallCoroutine)
         {
-            _isTokenRefreshing = true;
             yield return StartCoroutine(recallCoroutine);
             _isTokenRefreshing = false;
         }
