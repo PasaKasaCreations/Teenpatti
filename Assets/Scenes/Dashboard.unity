@@ -1005,6 +1005,8 @@ GameObject:
   - component: {fileID: 162072256}
   - component: {fileID: 162072255}
   - component: {fileID: 162072254}
+  - component: {fileID: 162072259}
+  - component: {fileID: 162072258}
   m_Layer: 5
   m_Name: DashboardCanvas
   m_TagString: Untagged
@@ -1099,6 +1101,35 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &162072258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162072253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ade140a97c229b04698b5c899cdee559, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelText: {fileID: 134357128}
+  coinText: {fileID: 981896714}
+  gemText: {fileID: 1997566318}
+  playerDetails: {fileID: 11400000, guid: 238fc123bbd805341a6fc9dfbdbe381b, type: 2}
+--- !u!114 &162072259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162072253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed84c5fce7bc4240a863f9511a1774b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freechipsButton: {fileID: 1625467658}
 --- !u!1 &166129174
 GameObject:
   m_ObjectHideFlags: 0

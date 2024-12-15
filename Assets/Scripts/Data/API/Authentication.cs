@@ -12,12 +12,23 @@ namespace Teenpatti.Data.API
     {
         public bool success;
         public string message;
-        public GuestLoginData data;
+        public LoginData data;
     }
 
-    public class GuestLoginData
+    public class LoginData
     {
-        public Player player;
+        public string id;
+        public int systemId;
+        public int level;
+        public int xp;
+        public string coins;
+        public int gems;
+        public string avatar;
+        public bool isGuest;
+        public string deviceId;
+        public string country;
+        public string timezone;
+        public string respinAvailableAt;
         public string accessToken;
         public string refreshToken;
     }
