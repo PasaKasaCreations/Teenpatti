@@ -1,4 +1,6 @@
+using Enums;
 using ScriptableObjects.EventBus;
+using ScriptableObjects.Logging;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
@@ -6,12 +8,18 @@ namespace Ads
 {
     public class RewardedAd : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
     {
+        [Header("Ad Units")]
         [SerializeField] private string androidAdUnitId = "Rewarded_Android";
         [SerializeField] private string iOSAdUnitId = "Rewarded_iOS";
         private string _adUnitId = null;
 
+        [Header("Events")]
         [SerializeField]
         private IntEventChannel RewardedEvent;
+
+        [Header("Logger")]
+        [SerializeField]
+        private Debugger adsLogger;
 
         void Awake()
         {
@@ -19,18 +27,20 @@ namespace Ads
                 ? iOSAdUnitId
                 : androidAdUnitId;
 
+#if UNITY_EDITOR
             _adUnitId = androidAdUnitId;
+#endif
         }
 
         public void LoadAd()
         {
-            Debug.Log("Loading Ad: " + _adUnitId);
+            adsLogger.Log("Loading Ad: " + _adUnitId);
             Advertisement.Load(_adUnitId, this);
         }
 
         public void OnUnityAdsAdLoaded(string adUnitId)
         {
-            Debug.Log("Ad Loaded: " + adUnitId);
+            adsLogger.Log("Ad Loaded: " + adUnitId);
             ShowAd();
         }
 
@@ -43,19 +53,19 @@ namespace Ads
         {
             if (adUnitId.Equals(_adUnitId) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
             {
-                Debug.Log("Unity Ads Rewarded Ad Completed");
+                adsLogger.Log("Unity Ads Rewarded Ad Completed");
                 RewardedEvent.Raise(50);
             }
         }
 
         public void OnUnityAdsFailedToLoad(string adUnitId, UnityAdsLoadError error, string message)
         {
-            Debug.Log($"Error loading Ad Unit {adUnitId}: {error.ToString()} - {message}");
+            adsLogger.Log($"Error loading Ad Unit {adUnitId}: {error.ToString()} - {message}", LoggingType.Warning);
         }
 
         public void OnUnityAdsShowFailure(string adUnitId, UnityAdsShowError error, string message)
         {
-            Debug.Log($"Error showing Ad Unit {adUnitId}: {error.ToString()} - {message}");
+            adsLogger.Log($"Error showing Ad Unit {adUnitId}: {error.ToString()} - {message}", LoggingType.Warning);
         }
 
         public void OnUnityAdsShowStart(string adUnitId) { }

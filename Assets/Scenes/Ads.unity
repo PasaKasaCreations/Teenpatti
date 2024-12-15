@@ -170,6 +170,7 @@ MonoBehaviour:
   testMode: 1
   interstitialAd: {fileID: 770861614}
   rewardedAd: {fileID: 770861615}
+  adsLogger: {fileID: 11400000, guid: c0071a944e6cd1d448f725841b40db7e, type: 2}
 --- !u!114 &770861614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   androidAdUnitId: Interstitial_Android
   iOsAdUnitId: Interstitial_iOS
+  adsLogger: {fileID: 11400000, guid: c0071a944e6cd1d448f725841b40db7e, type: 2}
 --- !u!114 &770861615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,6 +201,7 @@ MonoBehaviour:
   androidAdUnitId: Rewarded_Android
   iOSAdUnitId: Rewarded_iOS
   RewardedEvent: {fileID: 11400000, guid: e1ff4531cd66dbf4fbb804977d26fd96, type: 2}
+  adsLogger: {fileID: 11400000, guid: c0071a944e6cd1d448f725841b40db7e, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
