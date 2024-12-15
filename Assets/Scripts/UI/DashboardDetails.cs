@@ -1,4 +1,5 @@
 using ScriptableObjects.Data;
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -13,6 +14,10 @@ namespace Teenpatti.UI
         private TMP_Text coinText;
         [SerializeField]
         private TMP_Text gemText;
+        [SerializeField]
+        private TMP_Text speenWheelTimerText;
+        [SerializeField]
+        private TMP_Text availableInText;
 
         [Header("Player Details")]
         [SerializeField]
@@ -23,6 +28,7 @@ namespace Teenpatti.UI
             UpdateLevelText(playerDetails.level);
             UpdateCoinText(playerDetails.coins);
             UpdateGemText(playerDetails.gems);
+            UpdateSpinWheelTimer(playerDetails.respinAvailableAt);
         }
 
         private void UpdateLevelText(int level) => levelText.text = $"Level {level}";
@@ -30,5 +36,26 @@ namespace Teenpatti.UI
         private void UpdateCoinText(string coins) => coinText.text = $"{coins}";
 
         private void UpdateGemText(int gems) => gemText.text = $"{gems}";
+
+        private void UpdateSpinWheelTimer(DateTime respinAvailableAt)
+        {
+            string respinAvailableText = "";
+            if (respinAvailableAt == null)
+            {
+                respinAvailableText = "00:00:00";
+                availableInText.text = "Spin Now";
+            }
+            else
+            {
+                TimeSpan deltaTime = respinAvailableAt.Subtract(DateTime.Now);
+                if (deltaTime.TotalSeconds <= 0)
+                {
+                    deltaTime = new TimeSpan(0);
+                    availableInText.text = "Spin Now";
+                }
+                respinAvailableText = $"{deltaTime.Hours.ToString("00")}:{deltaTime.Minutes.ToString("00")}:{deltaTime.Seconds.ToString("00")}";
+            }
+            speenWheelTimerText.text = $"{respinAvailableText}";
+        }
     }
 }

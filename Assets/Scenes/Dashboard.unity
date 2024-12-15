@@ -1116,6 +1116,8 @@ MonoBehaviour:
   levelText: {fileID: 134357128}
   coinText: {fileID: 981896714}
   gemText: {fileID: 1997566318}
+  speenWheelTimerText: {fileID: 1245161476}
+  availableInText: {fileID: 368897641}
   playerDetails: {fileID: 11400000, guid: 238fc123bbd805341a6fc9dfbdbe381b, type: 2}
 --- !u!114 &162072259
 MonoBehaviour:
