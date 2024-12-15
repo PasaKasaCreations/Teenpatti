@@ -1,3 +1,5 @@
+using Enums;
+using ScriptableObjects.Logging;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
@@ -5,9 +7,14 @@ namespace Ads
 {
     public class InterstitialAd : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
     {
+        [Header("Ad Units")]
         [SerializeField] private string androidAdUnitId = "Interstitial_Android";
         [SerializeField] private string iOsAdUnitId = "Interstitial_iOS";
         private string _adUnitId;
+
+        [Header("Logger")]
+        [SerializeField]
+        private Debugger adsLogger;
 
         void Awake()
         {
@@ -18,13 +25,13 @@ namespace Ads
 
         public void LoadAd()
         {
-            Debug.Log("Loading Ad: " + _adUnitId);
+            adsLogger.Log("Loading Ad: " + _adUnitId);
             Advertisement.Load(_adUnitId, this);
         }
 
         public void ShowAd()
         {
-            Debug.Log("Showing Ad: " + _adUnitId);
+            adsLogger.Log("Showing Ad: " + _adUnitId);
             Advertisement.Show(_adUnitId, this);
         }
 
@@ -35,12 +42,12 @@ namespace Ads
 
         public void OnUnityAdsFailedToLoad(string _adUnitId, UnityAdsLoadError error, string message)
         {
-            Debug.Log($"Error loading Ad Unit: {_adUnitId} - {error.ToString()} - {message}");
+            adsLogger.Log($"Error loading Ad Unit: {_adUnitId} - {error.ToString()} - {message}", LoggingType.Warning);
         }
 
         public void OnUnityAdsShowFailure(string _adUnitId, UnityAdsShowError error, string message)
         {
-            Debug.Log($"Error showing Ad Unit {_adUnitId}: {error.ToString()} - {message}");
+            adsLogger.Log($"Error showing Ad Unit {_adUnitId}: {error.ToString()} - {message}", LoggingType.Warning);
         }
 
         public void OnUnityAdsShowStart(string _adUnitId) { }
