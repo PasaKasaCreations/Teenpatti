@@ -2,7 +2,6 @@ using API;
 using Constants;
 using ScriptableObjects.Data;
 using Teenpatti.Data.API;
-using Teenpatti.FortuneWheel;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,32 +9,40 @@ namespace Teenpatti.UI
 {
     public class FortuneWheelUI : MonoBehaviour
     {
-        [SerializeField]
-        private Button spinwheelButton;
-
-        [Header("Canvases")]
-        [SerializeField]
-        private Canvas spinWheelCanvas;
-
         [Header("Fortune Wheel")]
         [SerializeField]
-        private FortuneWheelManager fortuneWheelManager;
+        private Button spinButton;
 
-        [Header("Fortune Wheel Details")]
+        [Header("Fortune Wheel Data")]
         [SerializeField]
         private FortuneWheelDetails fortuneWheelDetails;
+
+        [Header("Fortune Wheel Components")]
+        [SerializeField]
+        private FortuneWheelDisplayUI[] fortuneWheelDisplayUIs;
+
         private void OnEnable()
         {
-            spinwheelButton.onClick.AddListener(ShowSpinWheel);
+            spinButton.onClick.AddListener(Spin);
+
+            UpdateFortuneWheelDisplay();
         }
 
-        private void ShowSpinWheel()
+        private void UpdateFortuneWheelDisplay()
         {
-            APIManager.Instance.Get<FortuneWheelResponse>(APIConstants.GetFortuneWheelValues,
+            for (int i = 0; i < fortuneWheelDetails.fortuneWheelData.Length; i++)
+            {
+                FortuneWheelData fortuneWheelData = fortuneWheelDetails.fortuneWheelData[i];
+                fortuneWheelDisplayUIs[i].ChangeValueText(fortuneWheelData.value);
+            }
+        }
+
+        private void Spin()
+        {
+            APIManager.Instance.Get<FortuneWheelSpinResponse>(APIConstants.SpinFortuneWheel,
             (response) =>
             {
-                fortuneWheelDetails.SetFortuneWheelData(response.data);
-                spinWheelCanvas.gameObject.SetActive(true);
+
             },
             (error) =>
             {
@@ -45,7 +52,7 @@ namespace Teenpatti.UI
 
         private void OnDisable()
         {
-            spinwheelButton.onClick.RemoveAllListeners();
+            spinButton.onClick.RemoveAllListeners();
         }
     }
 }
