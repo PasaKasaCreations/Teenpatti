@@ -1,6 +1,7 @@
 using API;
 using Constants;
 using Helpers;
+using ScriptableObjects.Data;
 using Socket;
 using System;
 using System.Globalization;
@@ -18,6 +19,10 @@ namespace Teenpatti.UI
         [SerializeField]
         private SceneField dashboardScene;
 
+        [Header("Player Details")]
+        [SerializeField]
+        private PlayerDetails playerDetails;
+
         public void GeustLogin()
         {
             APIManager.Instance.Post<GuestLogin, GuestLoginResponse>(APIConstants.GuestLogin, new GuestLogin()
@@ -29,6 +34,7 @@ namespace Teenpatti.UI
            (response) =>
            {
                Authenticator.Instance.SetToken(response.data.accessToken, response.data.refreshToken);
+               playerDetails.UpdateDetails(response.data);
                SocketManager.Instance.Initialize();
                SceneLoaderUnloader.Instance.ChangeAsync(dashboardScene, LoadSceneMode.Additive);
                SceneLoaderUnloader.Instance.UnloadSceneAsync(menuScene);

@@ -1,11 +1,12 @@
 using Enums;
+using Helpers;
 using ScriptableObjects.Logging;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
 namespace Ads
 {
-    public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener
+    public class AdsManager : Singleton<AdsManager>, IUnityAdsInitializationListener
     {
         [Header("Ad Units")]
         [SerializeField] private string androidGameId;
@@ -23,8 +24,9 @@ namespace Ads
         [SerializeField]
         private Debugger adsLogger;
 
-        void Awake()
+        public override void Awake()
         {
+            base.Awake();
             InitializeAds();
         }
 
