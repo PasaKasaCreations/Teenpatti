@@ -1,3 +1,4 @@
+using System;
 using Teenpatti.Data.API;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ namespace ScriptableObjects.Data
         public bool isGuest;
         public string country;
         public string timeZone;
+        public DateTime respinAvailableAt;
 
         public void UpdateDetails(LoginData loginData)
         {
@@ -21,6 +23,7 @@ namespace ScriptableObjects.Data
             gems = loginData.gems;
             isGuest = loginData.isGuest;
             timeZone = loginData.timezone;
+            respinAvailableAt = DateTime.Parse(loginData.respinAvailableAt);
         }
     }
 }
