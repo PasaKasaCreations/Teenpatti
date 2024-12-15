@@ -17,22 +17,8 @@ namespace Teenpatti.FortuneWheel
         [SerializeField]
         private Debugger apiLogger;
 
-        [ContextMenu("Get Fortune Wheel Values")]
-        private void GetFortuneWheelValues()
-        {
-            APIManager.Instance.Get<FortuneWheelResponse>(APIConstants.GetFortuneWheelValues,
-            (response) =>
-            {
-                fortuneWheelDetails.SetFortuneWheelData(response.data);
-            },
-            (error) =>
-            {
-                apiLogger.Log(error.message, Enums.LoggingType.Warning);
-            });
-        }
-
         [ContextMenu("Spin Fortune Wheel")]
-        private void SpinFortuneWheel()
+        public void SpinFortuneWheel()
         {
             APIManager.Instance.Get<FortuneWheelSpinResponse>(APIConstants.SpinFortuneWheel,
             (response) =>
