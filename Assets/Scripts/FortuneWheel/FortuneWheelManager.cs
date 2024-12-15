@@ -1,5 +1,6 @@
 using API;
 using Constants;
+using ScriptableObjects.Data;
 using ScriptableObjects.Logging;
 using Teenpatti.Data.API;
 using UnityEngine;
@@ -8,9 +9,9 @@ namespace Teenpatti.FortuneWheel
 {
     public class FortuneWheelManager : MonoBehaviour
     {
-        [Header("Fortune Wheel Data")]
+        [Header("Fortune Wheel Details")]
         [SerializeField]
-        private FortuneWheelData[] fortuneWheelData;
+        private FortuneWheelDetails fortuneWheelDetails;    
 
         [Header("Logger")]
         [SerializeField]
@@ -22,7 +23,7 @@ namespace Teenpatti.FortuneWheel
             APIManager.Instance.Get<FortuneWheelResponse>(APIConstants.GetFortuneWheelValues,
             (response) =>
             {
-                fortuneWheelData = response.data;
+                fortuneWheelDetails.SetFortuneWheelData(response.data);
             },
             (error) =>
             {

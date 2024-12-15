@@ -40,21 +40,13 @@ namespace Teenpatti.UI
         private void UpdateSpinWheelTimer(DateTime respinAvailableAt)
         {
             string respinAvailableText = "";
-            if (respinAvailableAt == null)
+            TimeSpan deltaTime = respinAvailableAt.Subtract(DateTime.Now);
+            if (deltaTime.TotalSeconds <= 0)
             {
-                respinAvailableText = "00:00:00";
+                deltaTime = new TimeSpan(0);
                 availableInText.text = "Spin Now";
             }
-            else
-            {
-                TimeSpan deltaTime = respinAvailableAt.Subtract(DateTime.Now);
-                if (deltaTime.TotalSeconds <= 0)
-                {
-                    deltaTime = new TimeSpan(0);
-                    availableInText.text = "Spin Now";
-                }
-                respinAvailableText = $"{deltaTime.Hours.ToString("00")}:{deltaTime.Minutes.ToString("00")}:{deltaTime.Seconds.ToString("00")}";
-            }
+            respinAvailableText = $"{deltaTime.Hours.ToString("00")}:{deltaTime.Minutes.ToString("00")}:{deltaTime.Seconds.ToString("00")}";
             speenWheelTimerText.text = $"{respinAvailableText}";
         }
     }
