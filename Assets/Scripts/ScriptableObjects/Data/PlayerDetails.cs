@@ -18,12 +18,15 @@ namespace ScriptableObjects.Data
 
         public void UpdateDetails(LoginData loginData)
         {
+            DateTime respinAvailableTime;
+            DateTime.TryParse(loginData.respinAvailableAt, out respinAvailableTime);
+
             level = loginData.level;
             coins = loginData.coins;
             gems = loginData.gems;
             isGuest = loginData.isGuest;
             timeZone = loginData.timezone;
-            respinAvailableAt = DateTime.Parse(loginData.respinAvailableAt);
+            respinAvailableAt = respinAvailableTime;
         }
     }
 }

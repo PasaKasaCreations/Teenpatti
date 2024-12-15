@@ -1454,7 +1454,7 @@ GameObject:
   - component: {fileID: 226278428}
   - component: {fileID: 226278427}
   m_Layer: 5
-  m_Name: friend img
+  m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1739,7 +1739,7 @@ GameObject:
   - component: {fileID: 248185316}
   - component: {fileID: 248185315}
   m_Layer: 5
-  m_Name: share txt
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2437,7 +2437,7 @@ GameObject:
   - component: {fileID: 368897642}
   - component: {fileID: 368897641}
   m_Layer: 5
-  m_Name: available in txt
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4399,7 +4399,7 @@ GameObject:
   - component: {fileID: 629876431}
   - component: {fileID: 629876430}
   m_Layer: 5
-  m_Name: leaderboard txt
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4999,7 +4999,7 @@ GameObject:
   - component: {fileID: 769097631}
   - component: {fileID: 769097630}
   m_Layer: 5
-  m_Name: login now txt
+  m_Name: Text (TMP)_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5359,7 +5359,7 @@ GameObject:
   - component: {fileID: 824827172}
   - component: {fileID: 824827171}
   m_Layer: 5
-  m_Name: setting img
+  m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6798,7 +6798,7 @@ GameObject:
   - component: {fileID: 1004319558}
   - component: {fileID: 1004319557}
   m_Layer: 5
-  m_Name: lucky spin txt
+  m_Name: Text (TMP)_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8573,7 +8573,7 @@ GameObject:
   - component: {fileID: 1211543974}
   - component: {fileID: 1211543973}
   m_Layer: 5
-  m_Name: inventory txt
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12289,7 +12289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07a7703ddf057c941b24420232576081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fortuneWheelData: []
+  fortuneWheelDetails: {fileID: 11400000, guid: a732275686487fa45a69d78df6e91aab, type: 2}
   apiLogger: {fileID: 11400000, guid: 926350eec609a684782f27f2c5ec7f8f, type: 2}
 --- !u!1 &1812826208
 GameObject:
@@ -12936,7 +12936,7 @@ GameObject:
   - component: {fileID: 1879550735}
   - component: {fileID: 1879550734}
   m_Layer: 5
-  m_Name: fb txt
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13170,7 +13170,7 @@ GameObject:
   - component: {fileID: 1899436737}
   - component: {fileID: 1899436736}
   m_Layer: 5
-  m_Name: task txt
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
