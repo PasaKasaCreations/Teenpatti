@@ -74,6 +74,12 @@ namespace Teenpatti.UI
                 });
         }
 
+        [ContextMenu("Test Rotate Wheel")]
+        private void TestRotateWheel()
+        {
+            RotateWheel(3);
+        }
+
         private void OnDisable()
         {
             spinButton.onClick.RemoveAllListeners();
