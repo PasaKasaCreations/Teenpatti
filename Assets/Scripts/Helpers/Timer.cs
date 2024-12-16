@@ -16,9 +16,13 @@ namespace Helpers
         [SerializeField]
         private VoidEventChannel TimerCompletedEvent;
 
+        [Header("Coroutines")]
+        private Coroutine _startTimerCoroutine;
+
         public void StartTimer(TimeSpan startTime)
         {
-            StartCoroutine(StartTimerCoroutine(startTime));
+            if (_startTimerCoroutine != null) StopCoroutine(_startTimerCoroutine);
+            _startTimerCoroutine = StartCoroutine(StartTimerCoroutine(startTime));
         }
 
         private IEnumerator StartTimerCoroutine(TimeSpan startTime)
