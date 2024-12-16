@@ -1158,12 +1158,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ade140a97c229b04698b5c899cdee559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 1835349371}
   levelText: {fileID: 134357128}
   coinText: {fileID: 981896714}
   gemText: {fileID: 1997566318}
   speenWheelTimerText: {fileID: 1245161476}
   availableInText: {fileID: 368897641}
   playerDetails: {fileID: 11400000, guid: 238fc123bbd805341a6fc9dfbdbe381b, type: 2}
+  SpinWheelTimeChangedEvent: {fileID: 11400000, guid: 7c9e551fa66446d45ab905db2ccb5ce7, type: 2}
+  TimerCompletedEvent: {fileID: 11400000, guid: d6a6f4aff1368864ba43b4f687c87252, type: 2}
 --- !u!1 &166129174
 GameObject:
   m_ObjectHideFlags: 0
@@ -12724,6 +12727,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1835349369}
   - component: {fileID: 1835349370}
+  - component: {fileID: 1835349371}
   m_Layer: 5
   m_Name: SpinWheel
   m_TagString: Untagged
@@ -12771,6 +12775,20 @@ MonoBehaviour:
   spinwheelButton: {fileID: 525908028}
   spinWheelCanvas: {fileID: 137253476}
   fortuneWheelDetails: {fileID: 11400000, guid: a732275686487fa45a69d78df6e91aab, type: 2}
+--- !u!114 &1835349371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835349368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d55147dbccd3a946abffad5bfe83a16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpinWheelTimeChangedEvent: {fileID: 11400000, guid: 7c9e551fa66446d45ab905db2ccb5ce7, type: 2}
+  TimerCompletedEvent: {fileID: 11400000, guid: d6a6f4aff1368864ba43b4f687c87252, type: 2}
 --- !u!1 &1840437043
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,8 @@
 using API;
 using Constants;
 using ScriptableObjects.Data;
+using ScriptableObjects.EventBus;
+using System;
 using Teenpatti.Data.API;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +11,7 @@ namespace Teenpatti.UI
 {
     public class FortuneWheelButton : MonoBehaviour
     {
+        [Header("Components")]
         [SerializeField]
         private Button spinwheelButton;
 
@@ -19,6 +22,7 @@ namespace Teenpatti.UI
         [Header("Fortune Wheel Details")]
         [SerializeField]
         private FortuneWheelDetails fortuneWheelDetails;
+
         private void OnEnable()
         {
             spinwheelButton.onClick.AddListener(ShowSpinWheel);

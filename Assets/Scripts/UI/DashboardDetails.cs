@@ -1,4 +1,6 @@
+using Helpers;
 using ScriptableObjects.Data;
+using ScriptableObjects.EventBus;
 using System;
 using TMPro;
 using UnityEngine;
@@ -7,6 +9,10 @@ namespace Teenpatti.UI
 {
     public class DashboardDetails : MonoBehaviour
     {
+        [Header("Components")]
+        [SerializeField]
+        private Timer timer;
+
         [Header("Details")]
         [SerializeField]
         private TMP_Text levelText;
@@ -22,6 +28,15 @@ namespace Teenpatti.UI
         [Header("Player Details")]
         [SerializeField]
         private PlayerDetails playerDetails;
+
+        [Header("Events")]
+        [SerializeField]
+        private TimeSpanEventChannel SpinWheelTimeChangedEvent;
+
+        private void OnEnable()
+        {
+            SpinWheelTimeChangedEvent.Event += ChangeTimer;
+        }
 
         private void Start()
         {
@@ -39,15 +54,28 @@ namespace Teenpatti.UI
 
         private void UpdateSpinWheelTimer(DateTime respinAvailableAt)
         {
-            string respinAvailableText = "";
             TimeSpan deltaTime = respinAvailableAt.Subtract(DateTime.Now);
             if (deltaTime.TotalSeconds <= 0)
             {
                 deltaTime = new TimeSpan(0);
+            }
+            ChangeTimer(deltaTime);
+            timer.StartTimer(deltaTime);
+        }
+
+        private void ChangeTimer(TimeSpan timeSpan)
+        {
+            if (timeSpan.TotalSeconds <= 0)
+            {
                 availableInText.text = "Spin Now";
             }
-            respinAvailableText = $"{deltaTime.Hours.ToString("00")}:{deltaTime.Minutes.ToString("00")}:{deltaTime.Seconds.ToString("00")}";
+            string respinAvailableText = $"{timeSpan.Hours.ToString("00")}:{timeSpan.Minutes.ToString("00")}:{timeSpan.Seconds.ToString("00")}";
             speenWheelTimerText.text = $"{respinAvailableText}";
+        }
+
+        private void OnDisable()
+        {
+            SpinWheelTimeChangedEvent.Event -= ChangeTimer;
         }
     }
 }
