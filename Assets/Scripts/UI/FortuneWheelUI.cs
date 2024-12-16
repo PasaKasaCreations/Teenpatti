@@ -1,6 +1,8 @@
 using API;
 using Constants;
 using ScriptableObjects.Data;
+using System;
+using System.Collections;
 using Teenpatti.Data.API;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +18,16 @@ namespace Teenpatti.UI
         [Header("Fortune Wheel Data")]
         [SerializeField]
         private FortuneWheelDetails fortuneWheelDetails;
+
+        [Header("Fortune Wheel Rotation")]
+        [SerializeField]
+        private Transform spinWheelTransform;
+        [SerializeField]
+        private float rotationTime = 2;
+        [SerializeField]
+        private float showRotationTime = 3;
+        [SerializeField]
+        private int rotateRepeatation = 3;
 
         [Header("Fortune Wheel Components")]
         [SerializeField]
@@ -42,7 +54,7 @@ namespace Teenpatti.UI
             APIManager.Instance.Get<FortuneWheelSpinResponse>(APIConstants.SpinFortuneWheel,
             (response) =>
             {
-
+                RotateWheel(response.data.winIndex);
             },
             (error) =>
             {
@@ -50,9 +62,25 @@ namespace Teenpatti.UI
             });
         }
 
+        private void RotateWheel(int goToIndex)
+        {
+            float angle = 360f / fortuneWheelDisplayUIs.Length;
+
+            LeanTween.rotateAround(spinWheelTransform.gameObject, Vector3.forward, angle * fortuneWheelDisplayUIs.Length, rotationTime)
+                .setRepeat(rotateRepeatation)
+                .setOnComplete(() =>
+                {
+                    LeanTween.rotateAround(spinWheelTransform.gameObject, Vector3.forward, angle * goToIndex, showRotationTime)
+                    .setEaseOutBounce();
+                    LeanTween.cancel(gameObject);
+                });
+        }
+
         private void OnDisable()
         {
             spinButton.onClick.RemoveAllListeners();
+
+            StopAllCoroutines();
         }
     }
 }

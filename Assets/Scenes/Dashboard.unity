@@ -886,6 +886,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spinButton: {fileID: 1175557143}
   fortuneWheelDetails: {fileID: 11400000, guid: a732275686487fa45a69d78df6e91aab, type: 2}
+  spinWheelTransform: {fileID: 1561134054}
+  rotationTime: 2
+  showRotationTime: 3
+  rotateRepeatation: 3
   fortuneWheelDisplayUIs:
   - {fileID: 1593648637}
   - {fileID: 1015371072}
@@ -1166,7 +1170,6 @@ MonoBehaviour:
   availableInText: {fileID: 368897641}
   playerDetails: {fileID: 11400000, guid: 238fc123bbd805341a6fc9dfbdbe381b, type: 2}
   SpinWheelTimeChangedEvent: {fileID: 11400000, guid: 7c9e551fa66446d45ab905db2ccb5ce7, type: 2}
-  TimerCompletedEvent: {fileID: 11400000, guid: d6a6f4aff1368864ba43b4f687c87252, type: 2}
 --- !u!1 &166129174
 GameObject:
   m_ObjectHideFlags: 0
@@ -11098,7 +11101,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1561134053}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.1999998, y: 1.1999998, z: 1.1999998}
   m_ConstrainProportionsScale: 0
