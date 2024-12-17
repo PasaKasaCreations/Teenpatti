@@ -16,6 +16,8 @@ namespace Constants
         public const string GetFortuneWheelValues = APIURI + "fortune-wheel/values";
         public const string SpinFortuneWheel = APIURI + "fortune-wheel/spin";
 
+        public const string ReedemAd = APIURI + "watch-ads/redeem?";
+
         public const string GetNoAds = APIURI + "no-ads";
         public const string PurchaseNoAds = APIURI + "no-ads/purchase";
     }

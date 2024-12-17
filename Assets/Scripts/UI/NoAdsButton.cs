@@ -13,18 +13,26 @@ namespace Teenpatti.UI
         [SerializeField]
         private Button noAdButton;
 
+        [Header("No Ads Data")]
+        [SerializeField]
+        private NoAdsGetResponseData[] noAdsData;
+
         private void OnEnable()
         {
             noAdButton.onClick.AddListener(OnNoAdButtonClicked);
         }
 
-        [ContextMenu("Get No Ads")]
+        private void Start()
+        {
+           GetNodAds();
+        }
+
         private void GetNodAds()
         {
             APIManager.Instance.Get<NoAdsGetResponse>(APIConstants.GetNoAds,
             (response) =>
             {
-
+                noAdsData = response.data;
             },
             (error) =>
             {
@@ -34,10 +42,12 @@ namespace Teenpatti.UI
 
         private void OnNoAdButtonClicked()
         {
+            if (noAdsData == null || noAdsData.Length == 0) return;
+
             APIManager.Instance.Post<PurchaseNoAds, PurchaseNoAdsResponse>(APIConstants.PurchaseNoAds,
             new()
             {
-                subscriptionId = ""
+                subscriptionId = noAdsData[0].id
             },
             (response) =>
             {
