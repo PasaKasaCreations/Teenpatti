@@ -32,10 +32,10 @@ namespace Teenpatti.UI
 
         private void ShareAndroidText(string referralCode, string referralLink)
         {
-            StartCoroutine(ShareAndroidTextCoroutine(referralCode, referralLink));
+            StartCoroutine(ShareAppWithReferralAndroidCoroutine(referralCode, referralLink));
         }
 
-        private IEnumerator ShareAndroidTextCoroutine(string referralCode, string referralLink)
+        private IEnumerator ShareAppWithReferralAndroidCoroutine(string referralCode, string referralLink)
         {
             yield return new WaitForEndOfFrame();
 
