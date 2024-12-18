@@ -1,10 +1,6 @@
-using API;
-using Constants;
 using Enums;
 using ScriptableObjects.EventBus;
 using ScriptableObjects.Logging;
-using System.Security.Cryptography;
-using Teenpatti;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
@@ -50,9 +46,11 @@ namespace Ads
 
         public void ShowAd()
         {
-            ShowOptions options = new ShowOptions();
-            options.gamerSid = "985b85fd-1f1d-4ba7-98c1-239953dff022";
-            Advertisement.Show(_adUnitId, this);
+            ShowOptions options = new()
+            {
+                gamerSid = "985b85fd-1f1d-4ba7-98c1-239953dff022"
+            };
+            Advertisement.Show(_adUnitId, options, this);
         }
 
         public void OnUnityAdsShowComplete(string adUnitId, UnityAdsShowCompletionState showCompletionState)
@@ -60,6 +58,7 @@ namespace Ads
             if (adUnitId.Equals(_adUnitId) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
             {
                 adsLogger.Log("Unity Ads Rewarded Ad Completed");
+                //APIManager.Instance.Get<object>(APIConstants.ReedemAd);
                 RewardedEvent.Raise(50);
             }
         }

@@ -377,8 +377,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
-  androidGameId: 5701148
-  iOSGameId: 5701149
+  androidGameId: 5748367
+  iOSGameId: 5748366
   testMode: 1
   interstitialAd: {fileID: 770861614}
   rewardedAd: {fileID: 770861615}
