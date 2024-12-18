@@ -1,4 +1,5 @@
 using Enums;
+using ScriptableObjects.Data;
 using ScriptableObjects.EventBus;
 using ScriptableObjects.Logging;
 using UnityEngine;
@@ -12,6 +13,10 @@ namespace Ads
         [SerializeField] private string androidAdUnitId = "Rewarded_Android";
         [SerializeField] private string iOSAdUnitId = "Rewarded_iOS";
         private string _adUnitId = null;
+
+        [Header("Data")]
+        [SerializeField]
+        private PlayerDetails playerDetails;
 
         [Header("Events")]
         [SerializeField]
@@ -48,7 +53,7 @@ namespace Ads
         {
             ShowOptions options = new()
             {
-                gamerSid = "985b85fd-1f1d-4ba7-98c1-239953dff022"
+                gamerSid = playerDetails.id,
             };
             Advertisement.Show(_adUnitId, options, this);
         }
