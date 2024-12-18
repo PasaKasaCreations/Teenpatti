@@ -42,4 +42,10 @@ namespace Teenpatti.Data
         public string createdAt;
         public string updatedAt;
     }
+
+    public class NoAdsSubscription
+    {
+        public string id;
+        public string expiredOn;
+    }
 }

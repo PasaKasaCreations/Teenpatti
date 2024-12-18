@@ -6,6 +6,7 @@ namespace Teenpatti.Data.API
         public string deviceId;
         public string country;
         public string timezone;
+        public string referralCode;
     }
 
     public class GuestLoginResponse
@@ -26,9 +27,12 @@ namespace Teenpatti.Data.API
         public string avatar;
         public bool isGuest;
         public string deviceId;
+        public string referralCode;
         public string country;
         public string timezone;
         public string respinAvailableAt;
+        public NoAdsSubscription noAdsSubscription;
+        public string referral;
         public string accessToken;
         public string refreshToken;
     }
