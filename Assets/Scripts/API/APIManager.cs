@@ -73,7 +73,7 @@ namespace API
 
                 if (!_isTokenRefreshing)
                 {
-                    apiLogger.Log(webRequest.error, LoggingType.Warning);
+                    apiLogger.Log(webRequest.downloadHandler.text, LoggingType.Warning);
                     Error error = JsonConvert.DeserializeObject<Error>(webRequest.downloadHandler.text);
                     errorCallback?.Invoke(error);
                 }
@@ -110,7 +110,7 @@ namespace API
 
                 if (!_isTokenRefreshing)
                 {
-                    apiLogger.Log(webRequest.error, LoggingType.Warning);
+                    apiLogger.Log(webRequest.downloadHandler.text, LoggingType.Warning);
                     Error error = JsonConvert.DeserializeObject<Error>(webRequest.downloadHandler.text);
                     errorCallback?.Invoke(error);
                 }

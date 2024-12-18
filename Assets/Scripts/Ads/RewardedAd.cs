@@ -1,6 +1,10 @@
+using API;
+using Constants;
 using Enums;
 using ScriptableObjects.EventBus;
 using ScriptableObjects.Logging;
+using System.Security.Cryptography;
+using Teenpatti;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
@@ -46,6 +50,8 @@ namespace Ads
 
         public void ShowAd()
         {
+            ShowOptions options = new ShowOptions();
+            options.gamerSid = "985b85fd-1f1d-4ba7-98c1-239953dff022";
             Advertisement.Show(_adUnitId, this);
         }
 

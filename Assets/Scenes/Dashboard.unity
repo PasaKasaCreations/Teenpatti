@@ -789,7 +789,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &137253474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -889,7 +889,7 @@ MonoBehaviour:
   spinButton: {fileID: 1175557143}
   fortuneWheelDetails: {fileID: 11400000, guid: a732275686487fa45a69d78df6e91aab, type: 2}
   spinWheelTransform: {fileID: 1561134054}
-  rotationTime: 2
+  rotationTime: 1
   showRotationTime: 3
   rotateRepeatation: 3
   fortuneWheelDisplayUIs:
@@ -2035,6 +2035,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noAdButton: {fileID: 251057931}
+  noAdsData: []
 --- !u!1 &252156504
 GameObject:
   m_ObjectHideFlags: 0
