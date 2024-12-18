@@ -9404,6 +9404,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1249829018}
+  - component: {fileID: 1249829019}
   m_Layer: 5
   m_Name: share
   m_TagString: Untagged
@@ -9432,6 +9433,19 @@ RectTransform:
   m_AnchoredPosition: {x: 300, y: -12.880001}
   m_SizeDelta: {x: 207.2, y: 157}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1249829019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249829017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7c2c9d6dbc88c6499c8a623b3e9cce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shareButton: {fileID: 1953247950}
 --- !u!1 &1254790439
 GameObject:
   m_ObjectHideFlags: 0

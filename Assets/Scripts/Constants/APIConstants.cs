@@ -3,7 +3,8 @@ namespace Constants
 {
     public static class APIConstants
     {
-        public const string APIURI = "https://api-3.pasakasacreations.com/api/v1/";
+        //public const string APIURI = "https://api-3.pasakasacreations.com/api/v1/";
+        public const string APIURI = "https://dwvb0ytuvdxi.share.zrok.io/api/v1/";
 
         public const string GuestLogin = APIURI + "auth/guest/login";
         public const string RefreshLogin = APIURI + "auth/refresh-token";
@@ -20,5 +21,7 @@ namespace Constants
 
         public const string GetNoAds = APIURI + "no-ads";
         public const string PurchaseNoAds = APIURI + "no-ads/purchase";
+
+        public const string GetReferral = APIURI + "player/referral";
     }
 }   

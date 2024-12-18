@@ -33,9 +33,9 @@ namespace Ads
         public void InitializeAds()
         {
 #if UNITY_IOS
-            _gameId = _iOSGameId;
+            _gameId = iOSGameId;
 #elif UNITY_ANDROID
-            _gameId = _androidGameId;
+            _gameId = androidGameId;
 #elif UNITY_EDITOR
             _gameId = androidGameId; 
 #endif
