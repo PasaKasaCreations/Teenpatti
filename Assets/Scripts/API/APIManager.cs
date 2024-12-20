@@ -80,7 +80,7 @@ namespace API
             }
             else
             {
-                apiLogger.Log("Received: " + webRequest.downloadHandler.text);
+                apiLogger.Log(webRequest.downloadHandler.text);
                 R result = JsonConvert.DeserializeObject<R>(webRequest.downloadHandler.text);
                 callback?.Invoke(result);
             }

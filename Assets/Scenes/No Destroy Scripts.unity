@@ -342,6 +342,7 @@ GameObject:
   - component: {fileID: 770861613}
   - component: {fileID: 770861614}
   - component: {fileID: 770861615}
+  - component: {fileID: 770861616}
   m_Layer: 0
   m_Name: Ads Manager
   m_TagString: Untagged
@@ -412,9 +413,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   androidAdUnitId: Rewarded_Android
   iOSAdUnitId: Rewarded_iOS
-  playerDetails: {fileID: 0}
+  playerDetails: {fileID: 11400000, guid: 238fc123bbd805341a6fc9dfbdbe381b, type: 2}
+  s2sAds: {fileID: 770861616}
   RewardedEvent: {fileID: 11400000, guid: e1ff4531cd66dbf4fbb804977d26fd96, type: 2}
   adsLogger: {fileID: 11400000, guid: c0071a944e6cd1d448f725841b40db7e, type: 2}
+--- !u!114 &770861616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770861610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744d226cf7efbb94b91aabc5b1a236da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerDetails: {fileID: 11400000, guid: 238fc123bbd805341a6fc9dfbdbe381b, type: 2}
 --- !u!1 &1080846388
 GameObject:
   m_ObjectHideFlags: 0

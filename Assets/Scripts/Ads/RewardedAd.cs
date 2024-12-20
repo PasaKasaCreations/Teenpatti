@@ -18,6 +18,10 @@ namespace Ads
         [SerializeField]
         private PlayerDetails playerDetails;
 
+        [Header("S2S Ads")]
+        [SerializeField]
+        private S2SAds s2sAds;
+
         [Header("Events")]
         [SerializeField]
         private IntEventChannel RewardedEvent;
@@ -63,8 +67,8 @@ namespace Ads
             if (adUnitId.Equals(_adUnitId) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
             {
                 adsLogger.Log("Unity Ads Rewarded Ad Completed");
-                //APIManager.Instance.Get<object>(APIConstants.ReedemAd);
                 RewardedEvent.Raise(50);
+                s2sAds.ReedemAPI();
             }
         }
 
@@ -82,3 +86,4 @@ namespace Ads
         public void OnUnityAdsShowClick(string adUnitId) { }
     }
 }
+
