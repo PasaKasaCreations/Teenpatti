@@ -1,3 +1,5 @@
+using System;
+
 namespace Teenpatti.Data.API
 {
     public class GetAllInventoryResponse
@@ -13,6 +15,7 @@ namespace Teenpatti.Data.API
 
     }
 
+    [Serializable]
     public class InventoryData
     {
         public string id;
@@ -26,5 +29,27 @@ namespace Teenpatti.Data.API
         public int trialDuration;
         public string createdAt;
         public string updatedAt;
+    }
+
+    public class PurchaseInventoryTrial
+    {
+        public string inventoryItemId;
+    }
+
+    public class PurchaseInventoryPermanent
+    {
+        public string inventoryItemId;
+    }
+
+    public class PurchaseInventoryTrialResponse
+    {
+        public bool success;
+        public string message;
+    }
+
+    public class PurchaseInventoryPermanentResponse
+    {
+        public bool success;
+        public string message;
     }
 }

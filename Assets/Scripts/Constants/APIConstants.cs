@@ -25,5 +25,8 @@ namespace Constants
 
         public const string GetInventory = APIURI + "inventory";
         public const string GetOwnedInventory = APIURI + "inventory/owned";
+
+        public const string InventoryPurchaseTrial = APIURI + "inventory/purchase/trial";
+        public const string InventoryPurchasePermanent = APIURI + "inventory/purchase/permanent";
     }
 }   
