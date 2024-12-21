@@ -32,9 +32,16 @@ namespace Teenpatti.Data.API
         public string timezone;
         public string respinAvailableAt;
         public NoAdsSubscription noAdsSubscription;
-        public string referral;
+        public ReferralData referral;
         public string accessToken;
         public string refreshToken;
+    }
+
+    public class ReferralData
+    {
+        public bool success;
+        public string message;
+        public int rewardedAmount;
     }
 
     public class RefreshLogin
