@@ -7,6 +7,7 @@ using Constants;
 using Newtonsoft.Json;
 using ScriptableObjects.Data;
 using Teenpatti.Data;
+using Enums;
 
 namespace Ads
 {
@@ -16,11 +17,11 @@ namespace Ads
         [SerializeField]
         private PlayerDetails playerDetails;
 
-        public void ReedemAPI()
+        public void ReedemAPI(AdType adType)
         {
             SendAd sendAdData = new()
             {
-                adType = "FREE_CHIPS",
+                adType = adType.ToString(),
                 id = null,
                 playerId = playerDetails.id
             };
