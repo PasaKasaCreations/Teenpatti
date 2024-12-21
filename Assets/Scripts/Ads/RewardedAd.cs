@@ -17,6 +17,8 @@ namespace Ads
         [Header("Data")]
         [SerializeField]
         private PlayerDetails playerDetails;
+        [SerializeField]
+        private AdType adType;
 
         [Header("S2S Ads")]
         [SerializeField]
@@ -41,9 +43,10 @@ namespace Ads
 #endif
         }
 
-        public void LoadAd()
+        public void LoadAd(AdType adType)
         {
             adsLogger.Log("Loading Ad: " + _adUnitId);
+            this.adType = adType;
             Advertisement.Load(_adUnitId, this);
         }
 
@@ -68,7 +71,7 @@ namespace Ads
             {
                 adsLogger.Log("Unity Ads Rewarded Ad Completed");
                 RewardedEvent.Raise(50);
-                s2sAds.ReedemAPI();
+                s2sAds.ReedemAPI(adType);
             }
         }
 

@@ -62,9 +62,9 @@ namespace Ads
         }
 
         [ContextMenu("Show Rewarded Ad")]
-        public void ShowRewardedAd()
+        public void ShowRewardedAd(AdType adType)
         {
-            rewardedAd.LoadAd();
+            rewardedAd.LoadAd(adType);
         }
     }
 }
