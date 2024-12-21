@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using ScriptableObjects.Data;
 using Teenpatti.Data;
 using Enums;
+using Teenpatti.Data.Secrets;
 
 namespace Ads
 {
@@ -17,8 +18,13 @@ namespace Ads
         [SerializeField]
         private PlayerDetails playerDetails;
 
+        [Header("Secret Data")]
+        [SerializeField]
+        private TextAsset secretText;
+
         public void ReedemAPI(AdType adType)
         {
+            string secretId = "";
             SendAd sendAdData = new()
             {
                 adType = adType.ToString(),
@@ -27,7 +33,9 @@ namespace Ads
             };
             string sendAdDataJson = JsonConvert.SerializeObject(sendAdData);
             string guid = Guid.NewGuid().ToString();
-            string hmac = GetHMAC($"oid={guid},productId={1234},sid={sendAdDataJson}", "88caea60363ff21b2fb1c970928e1e86");
+            Secrets secrets = JsonConvert.DeserializeObject<Secrets>(secretText.text);
+            secretId = Application.platform == RuntimePlatform.IPhonePlayer ? secrets.IOS_ID : secrets.ANDROID_ID;
+            string hmac = GetHMAC($"oid={guid},productId={1234},sid={sendAdDataJson}", secretId);
             APIManager.Instance.Get<object>(APIConstants.ReedemAd +
                 $"productid={1234}&sid={sendAdDataJson}&oid={guid}&hmac={hmac}");
         }

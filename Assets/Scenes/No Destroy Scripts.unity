@@ -414,6 +414,7 @@ MonoBehaviour:
   androidAdUnitId: Rewarded_Android
   iOSAdUnitId: Rewarded_iOS
   playerDetails: {fileID: 11400000, guid: 238fc123bbd805341a6fc9dfbdbe381b, type: 2}
+  adType: 0
   s2sAds: {fileID: 770861616}
   RewardedEvent: {fileID: 11400000, guid: e1ff4531cd66dbf4fbb804977d26fd96, type: 2}
   adsLogger: {fileID: 11400000, guid: c0071a944e6cd1d448f725841b40db7e, type: 2}
@@ -430,8 +431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDetails: {fileID: 11400000, guid: 238fc123bbd805341a6fc9dfbdbe381b, type: 2}
-  adType: 0
-  AdTypeChangedEvent: {fileID: 11400000, guid: bea8098f713bd2b4280ea9e9d361f190, type: 2}
+  secretText: {fileID: 4900000, guid: aabb01309a3428341a800ac57b758989, type: 3}
 --- !u!1 &1080846388
 GameObject:
   m_ObjectHideFlags: 0
