@@ -22,5 +22,8 @@ namespace Constants
         public const string PurchaseNoAds = APIURI + "no-ads/purchase";
 
         public const string GetReferral = APIURI + "player/referral";
+
+        public const string GetInventory = APIURI + "inventory";
+        public const string GetOwnedInventory = APIURI + "inventory/owned";
     }
 }   
