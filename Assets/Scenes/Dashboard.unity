@@ -2459,7 +2459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noAdButton: {fileID: 251057931}
-  noAdsData: []
+  noAdsUI: {fileID: 370353940}
 --- !u!1 &252156504
 GameObject:
   m_ObjectHideFlags: 0
@@ -3216,8 +3216,9 @@ GameObject:
   - component: {fileID: 370353938}
   - component: {fileID: 370353937}
   - component: {fileID: 370353936}
+  - component: {fileID: 370353940}
   m_Layer: 5
-  m_Name: Ads Canvas
+  m_Name: No Ads Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3307,6 +3308,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &370353940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370353934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3d2edf0e01d1234c993bf2a71ec5608, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noAdsInnerUIs:
+  - {fileID: 1403706123}
+  - {fileID: 975646462}
+  - {fileID: 1133013986}
 --- !u!1 &381563769
 GameObject:
   m_ObjectHideFlags: 0
@@ -7972,6 +7989,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 975646461}
+  - component: {fileID: 975646462}
   m_Layer: 5
   m_Name: Subscription 2
   m_TagString: Untagged
@@ -8001,6 +8019,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -113}
   m_SizeDelta: {x: 791, y: 163.8}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &975646462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975646460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c69fa716f57d1c4e834c226dad8619e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dayText: {fileID: 1348605004}
+  gemsText: {fileID: 689503345}
+  noAdInnerButton: {fileID: 1412582291}
+  noAdsGetResponseData:
+    id: 
+    gems: 0
+    days: 0
+    isExpired: 0
+    createdAt: 
+    updatedAt: 
 --- !u!1 &981436804
 GameObject:
   m_ObjectHideFlags: 0
@@ -9320,7 +9360,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1060199639}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 370353934}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1060199639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10158,6 +10210,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1133013985}
+  - component: {fileID: 1133013986}
   m_Layer: 5
   m_Name: Subscription 3
   m_TagString: Untagged
@@ -10187,6 +10240,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -278}
   m_SizeDelta: {x: 791, y: 163.8}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1133013986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133013984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c69fa716f57d1c4e834c226dad8619e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dayText: {fileID: 792850304}
+  gemsText: {fileID: 1105144264}
+  noAdInnerButton: {fileID: 2074209357}
+  noAdsGetResponseData:
+    id: 
+    gems: 0
+    days: 0
+    isExpired: 0
+    createdAt: 
+    updatedAt: 
 --- !u!1 &1137319338
 GameObject:
   m_ObjectHideFlags: 0
@@ -11995,6 +12070,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1403706122}
+  - component: {fileID: 1403706123}
   m_Layer: 5
   m_Name: Subscription 1
   m_TagString: Untagged
@@ -12024,6 +12100,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 52}
   m_SizeDelta: {x: 791, y: 163.8}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1403706123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403706121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c69fa716f57d1c4e834c226dad8619e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dayText: {fileID: 598051075}
+  gemsText: {fileID: 1560075389}
+  noAdInnerButton: {fileID: 1854946270}
+  noAdsGetResponseData:
+    id: 
+    gems: 0
+    days: 0
+    isExpired: 0
+    createdAt: 
+    updatedAt: 
 --- !u!1 &1412582289
 GameObject:
   m_ObjectHideFlags: 0
