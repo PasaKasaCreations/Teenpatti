@@ -15674,6 +15674,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1831326075}
+  - component: {fileID: 1831326076}
   m_Layer: 5
   m_Name: 'Profile '
   m_TagString: Untagged
@@ -15707,6 +15708,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 13.72}
   m_SizeDelta: {x: 393, y: 134}
   m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &1831326076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831326074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac0b1f5e23dd38f48a2ca1d651305c5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  avatarImage: {fileID: 869720950}
+  frameImage: {fileID: 998913211}
+  playerDetails: {fileID: 11400000, guid: 238fc123bbd805341a6fc9dfbdbe381b, type: 2}
 --- !u!1 &1832604139
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,20 @@ namespace Teenpatti.Data.API
 
     public class GetOwnedInventoryResponse
     {
+        public bool success;
+        public string message;
+        public OwnedInventoryData[] data;
+    }
 
+    [Serializable]
+    public class OwnedInventoryData
+    {
+        public string id;
+        public string inventoryItemId;
+        public string acquiredAt;
+        public string expiresAt;
+        public InventoryData[] InventoryItems;
+        public string path;
     }
 
     [Serializable]

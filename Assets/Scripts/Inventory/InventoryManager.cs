@@ -1,5 +1,6 @@
 using API;
 using Constants;
+using Enums;
 using Teenpatti.Data.API;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ namespace Teenpatti.Inventories
         [SerializeField]
         private InventoryData[] allInventoryData;
         [SerializeField]
-        private InventoryData[] ownedInventoryData;
+        private OwnedInventoryData[] ownedInventoryData;
 
         [ContextMenu("Get All Inventory")]
         public void GetAllInventory()
@@ -27,13 +28,12 @@ namespace Teenpatti.Inventories
                 });
         }
 
-        [ContextMenu("Get Owned Inventory")]
-        public void GetOwnedInventory()
+        public void GetOwnedInventory(InventoryType inventoryType)
         {
-            APIManager.Instance.Get<GetOwnedInventoryResponse>(APIConstants.GetOwnedInventory,
+            APIManager.Instance.Get<GetOwnedInventoryResponse>($"{APIConstants.GetOwnedInventory}{inventoryType}",
                 (response) =>
                 {
-                    //ownedInventoryData = response.data;
+                    ownedInventoryData = response.data;
                 },
                 (error) =>
                 {
@@ -73,6 +73,12 @@ namespace Teenpatti.Inventories
                 {
 
                 });
+        }
+
+        [ContextMenu("Get Owned Inventory Test")]
+        private void GetOwnedInventoryTest()
+        {
+            GetOwnedInventory(InventoryType.FRAME);
         }
 
         [ContextMenu("Purchase Inventory - Trial")]

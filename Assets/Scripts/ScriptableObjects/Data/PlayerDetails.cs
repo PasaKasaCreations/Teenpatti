@@ -7,6 +7,7 @@ namespace ScriptableObjects.Data
     [CreateAssetMenu(fileName = "Player Details", menuName = "Data/Player Details")]
     public class PlayerDetails : ScriptableObject
     {
+        [Header("Player Details")]
         public string id;
         public int level;
         public string coins;
@@ -16,6 +17,10 @@ namespace ScriptableObjects.Data
         public string country;
         public string timeZone;
         public DateTime respinAvailableAt;
+
+        [Header("Player Textures")]
+        public Sprite avatar;
+        public Sprite frame;
 
         public void UpdateDetails(LoginData loginData)
         {
@@ -30,5 +35,9 @@ namespace ScriptableObjects.Data
             timeZone = loginData.timezone;
             respinAvailableAt = respinAvailableTime;
         }
+
+        public void UpdateAvatar(Sprite avatar) => this.avatar = avatar;
+
+        public void UpdateFrame(Sprite frame) => this.frame = frame;
     }
 }
