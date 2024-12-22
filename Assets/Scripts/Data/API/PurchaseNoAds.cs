@@ -1,4 +1,6 @@
 
+using System;
+
 namespace Teenpatti.Data
 {
     public class NoAdsGetResponse
@@ -8,6 +10,7 @@ namespace Teenpatti.Data
         public NoAdsGetResponseData[] data;
     }
 
+    [Serializable]
     public class NoAdsGetResponseData
     {
         public string id;
@@ -38,5 +41,11 @@ namespace Teenpatti.Data
         public bool isExpired;
         public string createdAt;
         public string updatedAt;
+    }
+
+    public class NoAdsSubscription
+    {
+        public string id;
+        public string expiredOn;
     }
 }

@@ -64,7 +64,7 @@ namespace Teenpatti.UI
         {
             float angle = 360f / fortuneWheelDisplayUIs.Length;
 
-            LeanTween.rotateAround(spinWheelTransform.gameObject, Vector3.forward, angle * fortuneWheelDisplayUIs.Length, rotationTime)
+            LeanTween.rotateAround(spinWheelTransform.gameObject, Vector3.back, angle * fortuneWheelDisplayUIs.Length, rotationTime)
                 .setRepeat(rotateRepeatation)
                 .setOnComplete(() =>
                 {

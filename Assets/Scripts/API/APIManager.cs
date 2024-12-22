@@ -73,14 +73,14 @@ namespace API
 
                 if (!_isTokenRefreshing)
                 {
-                    apiLogger.Log(webRequest.error, LoggingType.Warning);
+                    apiLogger.Log(webRequest.downloadHandler.text, LoggingType.Warning);
                     Error error = JsonConvert.DeserializeObject<Error>(webRequest.downloadHandler.text);
                     errorCallback?.Invoke(error);
                 }
             }
             else
             {
-                apiLogger.Log("Received: " + webRequest.downloadHandler.text);
+                apiLogger.Log(webRequest.downloadHandler.text);
                 R result = JsonConvert.DeserializeObject<R>(webRequest.downloadHandler.text);
                 callback?.Invoke(result);
             }
@@ -110,7 +110,7 @@ namespace API
 
                 if (!_isTokenRefreshing)
                 {
-                    apiLogger.Log(webRequest.error, LoggingType.Warning);
+                    apiLogger.Log(webRequest.downloadHandler.text, LoggingType.Warning);
                     Error error = JsonConvert.DeserializeObject<Error>(webRequest.downloadHandler.text);
                     errorCallback?.Invoke(error);
                 }

@@ -1,4 +1,6 @@
 using Ads;
+using Enums;
+using ScriptableObjects.EventBus;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +19,7 @@ namespace Teenpatti.UI
 
         private void ShowAds()
         {
-            AdsManager.Instance.ShowRewardedAd();
+            AdsManager.Instance.ShowRewardedAd(AdType.FREE_CHIPS);
         }
 
         private void OnDisable()

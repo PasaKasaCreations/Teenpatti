@@ -7,6 +7,7 @@ namespace ScriptableObjects.Data
     [CreateAssetMenu(fileName = "Player Details", menuName = "Data/Player Details")]
     public class PlayerDetails : ScriptableObject
     {
+        public string id;
         public int level;
         public string coins;
         public int gems;
@@ -21,6 +22,7 @@ namespace ScriptableObjects.Data
             DateTime respinAvailableTime;
             DateTime.TryParse(loginData.respinAvailableAt, out respinAvailableTime);
 
+            id = loginData.id;
             level = loginData.level;
             coins = loginData.coins;
             gems = loginData.gems;

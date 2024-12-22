@@ -29,7 +29,8 @@ namespace Teenpatti.UI
             {
                 deviceId = SystemInfo.deviceUniqueIdentifier,
                 country = RegionInfo.CurrentRegion.TwoLetterISORegionName,
-                timezone = "America/New_York"
+                timezone = "Asia/Kathmandu",
+                referralCode = null
             },
            (response) =>
            {

@@ -1,4 +1,5 @@
 using Enums;
+using ScriptableObjects.Data;
 using ScriptableObjects.EventBus;
 using ScriptableObjects.Logging;
 using UnityEngine;
@@ -12,6 +13,16 @@ namespace Ads
         [SerializeField] private string androidAdUnitId = "Rewarded_Android";
         [SerializeField] private string iOSAdUnitId = "Rewarded_iOS";
         private string _adUnitId = null;
+
+        [Header("Data")]
+        [SerializeField]
+        private PlayerDetails playerDetails;
+        [SerializeField]
+        private AdType adType;
+
+        [Header("S2S Ads")]
+        [SerializeField]
+        private S2SAds s2sAds;
 
         [Header("Events")]
         [SerializeField]
@@ -32,9 +43,10 @@ namespace Ads
 #endif
         }
 
-        public void LoadAd()
+        public void LoadAd(AdType adType)
         {
             adsLogger.Log("Loading Ad: " + _adUnitId);
+            this.adType = adType;
             Advertisement.Load(_adUnitId, this);
         }
 
@@ -46,7 +58,11 @@ namespace Ads
 
         public void ShowAd()
         {
-            Advertisement.Show(_adUnitId, this);
+            ShowOptions options = new()
+            {
+                gamerSid = playerDetails.id,
+            };
+            Advertisement.Show(_adUnitId, options, this);
         }
 
         public void OnUnityAdsShowComplete(string adUnitId, UnityAdsShowCompletionState showCompletionState)
@@ -55,6 +71,7 @@ namespace Ads
             {
                 adsLogger.Log("Unity Ads Rewarded Ad Completed");
                 RewardedEvent.Raise(50);
+                s2sAds.ReedemAPI(adType);
             }
         }
 
@@ -72,3 +89,4 @@ namespace Ads
         public void OnUnityAdsShowClick(string adUnitId) { }
     }
 }
+

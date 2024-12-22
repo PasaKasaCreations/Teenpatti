@@ -34,7 +34,7 @@ namespace Helpers
             {
                 yield return new WaitForSeconds(1);
                 time = time.Subtract(TimeSpan.FromSeconds(1));
-                if (time.Seconds <= 0)
+                if (time.TotalSeconds <= 0)
                 {
                     _isTimerRunning = false;
                     TimerCompletedEvent.Raise();
