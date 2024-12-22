@@ -29,7 +29,7 @@ namespace Helpers
 
         private void ExtractReferralId(string url)
         {
-            string referralId = url.Split(new[] { "invite/", "#" }, StringSplitOptions.None)[1];
+            string referralId = StringSplitter.ExtractString(url, new[] { "invite/", "#" });
             referralDetails.SetReferralId(referralId);
         }
 

@@ -392,6 +392,7 @@ MonoBehaviour:
     scene: {fileID: 102900000, guid: 367fa9aecb9225d46b808240cc9ee804, type: 3}
     sceneName: Dashboard
   playerDetails: {fileID: 11400000, guid: 238fc123bbd805341a6fc9dfbdbe381b, type: 2}
+  textureImage: {fileID: 85559794}
 --- !u!1 &232045795
 GameObject:
   m_ObjectHideFlags: 0

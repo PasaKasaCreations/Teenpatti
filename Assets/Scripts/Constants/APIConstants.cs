@@ -24,7 +24,7 @@ namespace Constants
         public const string GetReferral = APIURI + "player/referral";
 
         public const string GetInventory = APIURI + "inventory";
-        public const string GetOwnedInventory = APIURI + "inventory/owned";
+        public const string GetOwnedInventory = APIURI + "inventory/owned?inventoryType=";
 
         public const string InventoryPurchaseTrial = APIURI + "inventory/purchase/trial";
         public const string InventoryPurchasePermanent = APIURI + "inventory/purchase/permanent";

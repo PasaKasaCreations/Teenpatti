@@ -5,9 +5,12 @@ using ScriptableObjects.Data;
 using Socket;
 using System;
 using System.Globalization;
+using System.IO;
 using Teenpatti.Data.API;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Teenpatti.UI
 {
@@ -37,8 +40,23 @@ namespace Teenpatti.UI
                Authenticator.Instance.SetToken(response.data.accessToken, response.data.refreshToken);
                playerDetails.UpdateDetails(response.data);
                SocketManager.Instance.Initialize();
-               SceneLoaderUnloader.Instance.ChangeAsync(dashboardScene, LoadSceneMode.Additive);
-               SceneLoaderUnloader.Instance.UnloadSceneAsync(menuScene);
+
+               APIManager.Instance.DownloadImage(response.data.avatar.path,
+                  (texture) =>
+                  {
+                      Sprite avatarSprite = Sprite.Create(texture, new Rect(0f, 0f, texture.width, texture.height), Vector2.zero);
+                      playerDetails.UpdateAvatar(avatarSprite);
+                  });
+
+               APIManager.Instance.DownloadImage(response.data.frame.path,
+                  (texture) =>
+                  {
+                      Sprite frameSprite = Sprite.Create(texture, new Rect(0f, 0f, texture.width, texture.height), Vector2.zero);
+                      playerDetails.UpdateFrame(frameSprite);
+
+                      SceneLoaderUnloader.Instance.ChangeAsync(dashboardScene, LoadSceneMode.Additive);
+                      SceneLoaderUnloader.Instance.UnloadSceneAsync(menuScene);
+                  });
            },
            (error) =>
            {
