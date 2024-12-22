@@ -12,19 +12,17 @@ namespace Teenpatti.UI
         [Header("Components")]
         [SerializeField]
         private Button noAdButton;
-
-        [Header("No Ads Data")]
         [SerializeField]
-        private NoAdsGetResponseData[] noAdsData;
+        private NoAdsUI noAdsUI;
 
         private void OnEnable()
         {
             noAdButton.onClick.AddListener(OnNoAdButtonClicked);
         }
 
-        private void Start()
+        private void OnNoAdButtonClicked()
         {
-           GetNodAds();
+            GetNodAds();
         }
 
         private void GetNodAds()
@@ -32,26 +30,8 @@ namespace Teenpatti.UI
             APIManager.Instance.Get<NoAdsGetResponse>(APIConstants.GetNoAds,
             (response) =>
             {
-                noAdsData = response.data;
-            },
-            (error) =>
-            {
-
-            });
-        }
-
-        private void OnNoAdButtonClicked()
-        {
-            if (noAdsData == null || noAdsData.Length == 0) return;
-
-            APIManager.Instance.Post<PurchaseNoAds, PurchaseNoAdsResponse>(APIConstants.PurchaseNoAds,
-            new()
-            {
-                subscriptionId = noAdsData[0].id
-            },
-            (response) =>
-            {
-
+                noAdsUI.UpdateNoAdsInnerUI(response.data);
+                noAdsUI.gameObject.SetActive(true);
             },
             (error) =>
             {
