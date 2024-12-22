@@ -1530,7 +1530,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.2699966, y: -46.76}
+  m_AnchoredPosition: {x: 1.2699966, y: -46.759995}
   m_SizeDelta: {x: -75.37, y: -121.39}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &169932523
@@ -2531,7 +2531,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.2699966, y: -46.76}
+  m_AnchoredPosition: {x: 1.2699966, y: -46.759995}
   m_SizeDelta: {x: -75.37, y: -121.39}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &255216060
@@ -3216,49 +3216,13 @@ GameObject:
   - component: {fileID: 370353938}
   - component: {fileID: 370353937}
   - component: {fileID: 370353936}
-  - component: {fileID: 370353935}
   m_Layer: 5
-  m_Name: ADs Canvas
+  m_Name: Ads Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &370353935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 370353934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 764a352505b1bd649bd46c0d78a2eb31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spinButton: {fileID: 0}
-  fortuneWheelDetails: {fileID: 11400000, guid: a732275686487fa45a69d78df6e91aab, type: 2}
-  spinWheelTransform: {fileID: 0}
-  rotationTime: 1
-  showRotationTime: 3
-  rotateRepeatation: 3
-  fortuneWheelDisplayUIs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  m_IsActive: 0
 --- !u!114 &370353936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4903,7 +4867,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 10.03}
+  m_AnchoredPosition: {x: 0, y: 10.029999}
   m_SizeDelta: {x: 0, y: -77.03}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &598051075
@@ -6076,7 +6040,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -32.160015, y: 3.1900005}
+  m_AnchoredPosition: {x: -32.16002, y: 3.1900005}
   m_SizeDelta: {x: -117.63, y: -24.58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &689503345
@@ -6738,7 +6702,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 10.03}
+  m_AnchoredPosition: {x: 0, y: 10.029999}
   m_SizeDelta: {x: 0, y: -77.03}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &792850304
@@ -9760,7 +9724,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -32.160015, y: 3.1900005}
+  m_AnchoredPosition: {x: -32.16002, y: 3.1900005}
   m_SizeDelta: {x: -117.63, y: -24.58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1105144264
@@ -11769,7 +11733,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 10.03}
+  m_AnchoredPosition: {x: 0, y: 10.029999}
   m_SizeDelta: {x: 0, y: -77.03}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1348605004
@@ -13397,7 +13361,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.2699966, y: -46.76}
+  m_AnchoredPosition: {x: 1.2699966, y: -46.759995}
   m_SizeDelta: {x: -75.37, y: -121.39}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1556326332
@@ -13533,7 +13497,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -32.160015, y: 3.1900005}
+  m_AnchoredPosition: {x: -32.16002, y: 3.1900005}
   m_SizeDelta: {x: -117.63, y: -24.58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1560075389
@@ -17864,7 +17828,7 @@ GameObject:
   - component: {fileID: 2014602362}
   - component: {fileID: 2014602363}
   m_Layer: 5
-  m_Name: ADS panel
+  m_Name: Ads panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
