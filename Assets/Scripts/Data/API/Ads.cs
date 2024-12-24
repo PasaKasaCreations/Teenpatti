@@ -6,5 +6,6 @@ namespace Teenpatti.Data
         public string adType;
         public string id;
         public string playerId;
+        public string platform;
     } 
 }

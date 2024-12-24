@@ -29,13 +29,14 @@ namespace Ads
             {
                 adType = adType.ToString(),
                 id = null,
-                playerId = playerDetails.id
+                playerId = playerDetails.id,
+                platform = Application.platform == RuntimePlatform.IPhonePlayer ? "ios" : "android"
             };
             string sendAdDataJson = JsonConvert.SerializeObject(sendAdData);
             string guid = Guid.NewGuid().ToString();
             Secrets secrets = JsonConvert.DeserializeObject<Secrets>(secretText.text);
             secretId = Application.platform == RuntimePlatform.IPhonePlayer ? secrets.IOS_ID : secrets.ANDROID_ID;
-            string hmac = GetHMAC($"oid={guid},productId={1234},sid={sendAdDataJson}", secretId);
+            string hmac = GetHMAC($"oid={guid},productid={1234},sid={sendAdDataJson}", secretId);
             APIManager.Instance.Get<object>(APIConstants.ReedemAd +
                 $"productid={1234}&sid={sendAdDataJson}&oid={guid}&hmac={hmac}");
         }
