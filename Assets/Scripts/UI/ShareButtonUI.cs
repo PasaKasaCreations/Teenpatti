@@ -22,7 +22,10 @@ namespace Teenpatti.UI
             APIManager.Instance.Get<GetReferralResponse>(APIConstants.GetReferral,
                 (response) =>
                 {
-                    ShareAndroidText(response.data.referralCode, response.data.referralLink);
+                    if (Application.platform == RuntimePlatform.Android)
+                    {
+                        ShareAndroidText(response.data.referralCode, response.data.referralLink);
+                    }
                 },
                 (error) =>
                 {
