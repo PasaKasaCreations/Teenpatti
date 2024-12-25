@@ -13,8 +13,8 @@ namespace ScriptableObjects.Input
         [Header("Input Reader")]
         private GameInput _gameInput;
 
-        [field: Header("Gameplay Input Actions")]
-        //public event UnityAction ...Event;
+        //[field: Header("Gameplay Input Actions")]
+        //public event UnityAction TestEvent;
 
         private void OnEnable()
         {
