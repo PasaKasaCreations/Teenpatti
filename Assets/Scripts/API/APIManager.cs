@@ -12,7 +12,6 @@ using Teenpatti;
 using Teenpatti.Data;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.UI;
 
 namespace API
 {
@@ -48,9 +47,9 @@ namespace API
             StartCoroutine(PutRequest(uri, data, callback, errorCallback, putType));
         }
 
-        public void DownloadImage(string imageUrl, Action<Texture2D> callback)
+        public void DownloadImage(string imageUrl, string imageName, Action<Texture2D> callback)
         {
-            StartCoroutine(DownloadImageCoroutine(imageUrl, callback));
+            StartCoroutine(DownloadImageCoroutine(imageUrl, imageName, callback));
         }
 
         public void Delete(string uri, Action callback = null, Action<Error> errorCallback = null)
@@ -197,21 +196,21 @@ namespace API
             }
         }
 
-        private IEnumerator DownloadImageCoroutine(string imageUrl, Action<Texture2D> callback)
+        private IEnumerator DownloadImageCoroutine(string imageUrl, string imageName, Action<Texture2D> callback)
         {
             UnityWebRequest webRequest = UnityWebRequestTexture.GetTexture(imageUrl);
             yield return webRequest.SendWebRequest();
 
+            string imagePath = $"{PathConstants.ImageSavePath}{imageName}.png";
             if (webRequest.result != UnityWebRequest.Result.Success)
             {
                 apiLogger.Log("Error: " + webRequest.error, LoggingType.Warning);
             }
             else
             {
-                string imageName = StringSplitter.ExtractString(imageUrl, StringSplitterConstants.ImagePath);
-                if (File.Exists(Application.persistentDataPath + imageName))
+                if (File.Exists(imagePath))
                 {
-                    byte[] textureBytes = File.ReadAllBytes(Application.persistentDataPath + imageName);
+                    byte[] textureBytes = File.ReadAllBytes(imagePath);
                     Texture2D loadedTexture = new Texture2D(100, 100);
                     loadedTexture.LoadImage(textureBytes);
                     apiLogger.Log("The Image Already Exist.", LoggingType.Warning);
@@ -219,9 +218,13 @@ namespace API
                 }
                 else
                 {
+                    if (!File.Exists(PathConstants.ImageSavePath))
+                    {
+                        Directory.CreateDirectory(PathConstants.ImageSavePath);
+                    }
                     Texture2D loadedTexture = DownloadHandlerTexture.GetContent(webRequest);
                     byte[] textureBytes = loadedTexture.EncodeToPNG();
-                    File.WriteAllBytes(Application.persistentDataPath + imageName, textureBytes);
+                    File.WriteAllBytes(imagePath, textureBytes);
                     apiLogger.Log("The Image is Downloaded.");
                     callback?.Invoke(loadedTexture);
                 }
