@@ -38,6 +38,7 @@ namespace Teenpatti.UI
                SocketManager.Instance.Initialize();
 
                APIManager.Instance.DownloadImage(response.data.avatar.path,
+                   response.data.avatar.id,
                   (texture) =>
                   {
                       Sprite avatarSprite = Sprite.Create(texture, new Rect(0f, 0f, texture.width, texture.height), Vector2.zero);
@@ -45,6 +46,7 @@ namespace Teenpatti.UI
                   });
 
                APIManager.Instance.DownloadImage(response.data.frame.path,
+                   response.data.frame.id,
                   (texture) =>
                   {
                       Sprite frameSprite = Sprite.Create(texture, new Rect(0f, 0f, texture.width, texture.height), Vector2.zero);
