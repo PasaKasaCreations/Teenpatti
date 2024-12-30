@@ -28,5 +28,9 @@ namespace Constants
 
         public const string InventoryPurchaseTrial = APIURI + "inventory/purchase/trial";
         public const string InventoryPurchasePermanent = APIURI + "inventory/purchase/permanent";
+
+        public const string GetPurchaseStoreItems = APIURI + "store?storeItemType=";
+        public const string PurchaseCoins = APIURI + "store/purchase/coins";
+        public const string PurchaseGems = APIURI + "store/purchase/gems";
     }
 }   
