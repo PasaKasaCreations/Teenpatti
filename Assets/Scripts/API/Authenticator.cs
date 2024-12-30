@@ -24,7 +24,7 @@ namespace Teenpatti
            },
            (error) =>
            {
-               print(error.message[0]);
+               print(error.message);
            });
         }
 

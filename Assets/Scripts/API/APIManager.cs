@@ -70,7 +70,7 @@ namespace API
             webRequest.timeout = timeoutSeconds;
             yield return webRequest.SendWebRequest();
 
-            if(webRequest.result != UnityWebRequest.Result.Success)
+            if (webRequest.result != UnityWebRequest.Result.Success)
             {
                 if(webRequest.responseCode == 401)
                 {
